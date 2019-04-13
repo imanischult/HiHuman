@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hi, Human</title>
+
+    <title>Hi Humans!</title>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -32,19 +33,23 @@
         <div class="row">
             <div class="col s12 m12 mainBox">
                 <div class="card-panel grey" id="hiHumanBox">
+
                    <div id="hhText"> <span class="white-text">Hi, Human</span></div>
                 </div>
                 <div class="hhHomeBut">
+
                 <div class='row landingButtons'>
                     <a id='signIn' class="waves-effect waves-light btn">Sign In</a>
                     <a id='newAccount'class="waves-effect waves-light btn">Create a New Account</a>
                 </div>
-                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- The Modal -->
+
+    <!-- The Sign Up Modal -->
+
     <div id="signUpModal" class='modal'>
 
         <!-- Modal content -->
@@ -52,7 +57,9 @@
             <!-- Modal header -->
             <div class='card-panel grey modalHeader'>
                 <span class="close">&times;</span>
-                <div class="modal-text white-text">CREATE YOUR HI, HUMAN <br />ACCOUNT</div>
+
+                <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
+
             </div>
             <!-- Materialize CSS Input Form for Create Profile-->
             <div class="row">
@@ -66,7 +73,8 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="user_name" type="text" class="validate">
-                            <label for="text">Username</label>
+
+                            <label for="user_name">Username</label>
                         </div>
                     </div>
                     <div class="row">
@@ -84,28 +92,45 @@
                 </form>
             </div>
 
-                         <!-- Materialize CSS Input Form for Sign In-->
-            <div class="row">
-                    <form class="col s7">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="userSignIn" type="email" class="validate">
-                                <label for='userSignIn'>Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="password" type="password" class="validate">
-                                <label for="password">Password</label>
-                            </div>
-                        </div>
-                    </form>
+            <div class='row'>
+                <div class="input-field col s8">
+                    <!-- Create account button within modal -->
+                    <a id='newAccount'class="waves-effect waves-light btn">Create Account</a>
                 </div>
-
-            <!-- Create account button within modal -->
-            <a id='newAccount'class="waves-effect waves-light btn">Create Account</a>
+            </div>
         </div>
     </div>
+
+    <!-- Materialize CSS Input Form for Sign In-->
+    <div id="signInModal" class='modal'>
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class='card-panel grey modalHeader'>
+                <span class="close">&times;</span>
+                <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
+            </div>
+            <!-- Materialize CSS Input Form for Create Profile-->
+            <div class="row">
+                <form class="col s7">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="userSignIn" type="email" class="validate">
+                            <label for='userSignIn'>Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <div class="footer-copyright footer">
         © 2019 Copyright
@@ -116,9 +141,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- This links JS -->
         <script src="resources/js/app.js"></script>
-
-        
-
 
 </body>
 </html>
