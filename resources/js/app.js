@@ -38,11 +38,11 @@ $close.on('click', function() {
 });
 
 // When the user clicks anywhere outside of the modal, close it
-document.on('click', function(event) {
-  if (event.target == $modal) {
-    $modal.css('display', 'none')
-  }
-});
+// document.on('click', function(event) {
+//   if (event.target == $modal) {
+//     $modal.css('display', 'none')
+//   }
+// });
 
 
 
