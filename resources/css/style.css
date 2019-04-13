@@ -1,3 +1,44 @@
+
+#hhText.white-text {
+    font-size: 118px;
+    text-align: center;
+    font-weight: 200;
+}
+
+.hhHomeBut {
+    position: absolute;
+    right: 502px;
+    margin: 70px;
+}
+
+#hiHumanBox.card-panel.grey {
+    margin: 50px;
+}
+
+.footer-copyright.footer {
+    position: absolute;
+    bottom: -7px;
+    left: 650px;
+}
+
+/* choose mask page */
+
+.card-panel.teal {
+    position: fixed;
+    width: 500px;
+    right: 29pc;
+}
+#nextBut {
+    position: absolute;
+    margin: 70px;
+    right: 145px;
+}
+
+.white-text {
+    font-weight: 700;
+    text-align: center;
+}
+=======
 /* Hi Human div box */
 #hiHumanBox {
     padding: 50px;
