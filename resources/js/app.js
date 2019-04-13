@@ -1,23 +1,23 @@
 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDY0ap1bIDwwvSRsvusGOtH1ow7F6AqPyU",
-    authDomain: "hiawesomehumans.firebaseapp.com",
-    databaseURL: "https://hiawesomehumans.firebaseio.com",
-    projectId: "hiawesomehumans",
-    storageBucket: "hiawesomehumans.appspot.com",
-    messagingSenderId: "501987551176"
-  };
-  firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDY0ap1bIDwwvSRsvusGOtH1ow7F6AqPyU",
+  authDomain: "hiawesomehumans.firebaseapp.com",
+  databaseURL: "https://hiawesomehumans.firebaseio.com",
+  projectId: "hiawesomehumans",
+  storageBucket: "hiawesomehumans.appspot.com",
+  messagingSenderId: "501987551176"
+};
+firebase.initializeApp(config);
 
 const auth = firebase.auth();
 const db = firebase.database();
 const user = firebase.auth().currentUser;
 
 
-  // ++++ Sign-Up Modal Logic ++++ //
+// ++++ Sign-Up Modal Logic ++++ //
 
-  // Get the modal
+// Get the modal
 var $modal = $('#signUpModal');
 
 // Get the button that opens the modal
@@ -27,18 +27,18 @@ var $newAcctBtn = $("#newAccount");
 var $close = $(".close");
 
 // When the user clicks the button, open the modal 
-$newAcctBtn.on('click', function() {
-  $modal.css('display','block')
+$newAcctBtn.on('click', function () {
+  $modal.css('display', 'block')
 });
 
 // When the user clicks on <span> (x), close the modal
-$close.on('click', function() {
-  $modal.css('display','none')
+$close.on('click', function () {
+  $modal.css('display', 'none')
   console.log(this)
 });
 
 // When the user clicks anywhere outside of the modal, close it
-document.on('click', function(event) {
+document.on('click', function (event) {
   if (event.target == $modal) {
     $modal.css('display', 'none')
   }
@@ -62,8 +62,17 @@ const newAuth = (email, username, password) => {
     console.log(error);
   }).then(user.updateProfile({
     displayName: username,
-    role: "User"
+    // role: "User"
   }).then(function () {
+    db.ref(users).push( {
+      email: email,
+      username: username,
+      role: user,
+      mask: "",
+      icons: [],
+      reasons: [],
+      testsTaken: 0
+    })
     console.log("user created")
   }).catch(function (error) {
     console.log("something broke.")
@@ -103,7 +112,7 @@ $("#newAccount").on("click", function (event) {
 //this function takes a userid from the database and gives them the admin role
 const setAdmin = (uid) => {
   admin.auth().updateUser(uid, {
-    role: admin 
+    role: admin
   })
     .then(function (UserInfo) {
       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
@@ -119,16 +128,16 @@ $("#make-admin").on("click", function (event) {
   event.preventDefault();
   let usrEmail = $("#adminEmail").val().trim();
   //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
-  db.ref(`users/${theUser}`)  
+  db.ref(`users/${theUser}`)
   firebase.user
-    .then(function(UserInfo) {
+    .then(function (UserInfo) {
       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
       console.log('Successfully fetched user data:', UserInfo.toJSON());
       let uid = UserInfo.uid;
       setAdmin(uid);
     })
-    .catch(function(error) {
-    console.log('Error fetching user data:', error);
+    .catch(function (error) {
+      console.log('Error fetching user data:', error);
     });
 
 
