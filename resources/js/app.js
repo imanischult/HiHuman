@@ -38,11 +38,11 @@ $close.on('click', function () {
 });
 
 // When the user clicks anywhere outside of the modal, close it
-document.on('click', function (event) {
-  if (event.target == $modal) {
-    $modal.css('display', 'none')
-  }
-});
+// document.on('click', function (event) {
+//   if (event.target == $modal) {
+//     $modal.css('display', 'none')
+//   }
+// });
 
 
 
@@ -64,7 +64,7 @@ const newAuth = (email, username, password) => {
     displayName: username,
     // role: "User"
   }).then(function () {
-    db.ref(users).push( {
+    db.ref("users").push( {
       email: email,
       username: username,
       role: user,
@@ -110,25 +110,25 @@ $("#newAccount").on("click", function (event) {
 
 
 //this function takes a userid from the database and gives them the admin role
-const setAdmin = (uid) => {
-  admin.auth().updateUser(uid, {
-    role: admin
-  })
-    .then(function (UserInfo) {
-      // See the UserInfoUserInfo reference doc for the contents of UserInfo.
-      console.log('Successfully updated user', UserInfo.toJSON());
-    })
-    .catch(function (error) {
-      console.log('Error updating user:', error);
-    });
-}
+// const setAdmin = (uid) => {
+//   db.ref().on("child_added", function(childSnapshot) {
+//     role: admin
+//   })
+//     .then(function (UserInfo) {
+//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
+//       console.log('Successfully updated user', UserInfo.toJSON());
+//     })
+//     .catch(function (error) {
+//       console.log('Error updating user:', error);
+//     });
+// }
 
 //on clicking the make admin button on the admin page
 $("#make-admin").on("click", function (event) {
   event.preventDefault();
   let usrEmail = $("#adminEmail").val().trim();
   //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
-  db.ref(`users/${theUser}`)
+  db.ref(`users/email`).on()
   firebase.user
     .then(function (UserInfo) {
       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
