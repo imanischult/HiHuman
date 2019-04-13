@@ -37,7 +37,7 @@ $close.on('click', function () {
   console.log(this)
 });
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it -- this needs to be nested in a function, otherwise it seems to just run.
 // document.on('click', function (event) {
 //   if (event.target == $modal) {
 //     $modal.css('display', 'none')
