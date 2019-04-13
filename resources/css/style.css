@@ -20,7 +20,7 @@
     left: 650px;
 }
 
-/* choose mask page */
+/* HH instruction page */
 
 .card-panel.teal {
     position: fixed;
@@ -36,4 +36,15 @@
 .white-text {
     font-weight: 700;
     text-align: center;
+}
+
+/*choose mask page  */
+
+#cymBox {
+    font-size: 30px;
+    text-align: center;
+    position: sticky;
+}
+.maskBox {
+    width: 300px;
 }
