@@ -1,3 +1,4 @@
+
 /* Styling the modal */
 
 /* The Modal (background) */
@@ -38,3 +39,24 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+/* main page features */
+#hiHumanBox {
+    padding: 70px;
+    margin: auto;
+    font-size: 70px;
+    text-align: center;
+
+}
+
+.footer {
+    text-align: center;
+}
+
+.landingButtons {
+    margin: 30px;
+}
+
+#signIn, #newAccount {
+    padding: 10px 10px;
+}
