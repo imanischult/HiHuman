@@ -5,7 +5,6 @@ var config = {
   authDomain: "hiawesomehumans.firebaseapp.com",
   databaseURL: "https://hiawesomehumans.firebaseio.com",
   projectId: "hiawesomehumans",
-  storageBucket: "hiawesomehumans.appspot.com",
   messagingSenderId: "501987551176"
 };
 firebase.initializeApp(config);
@@ -59,10 +58,10 @@ const newAuth = (email, username, password) => {
     } else {
       $("<form>").append(errorMessage);
     }
-    console.log(error);
-  }).then(user.updateProfile({
-    displayName: username,
-    // role: "User"
+    // console.log(error);
+  // }).then(user.updateProfile({
+  //   displayName: username,
+  //   // role: "User"
   }).then(function () {
     db.ref("users").push( {
       email: email,
@@ -76,8 +75,8 @@ const newAuth = (email, username, password) => {
     console.log("user created")
   }).catch(function (error) {
     console.log("something broke.")
-  }));
-}
+  })};
+
 
 //sign in functionality. Firebase docs provides this. 
 const signIn = (email, password) => {
