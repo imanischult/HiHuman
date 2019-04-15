@@ -21,7 +21,7 @@
     left: 650px;
 }
 
-/* choose mask page */
+/* HH instruction page */
 
 .card-panel.teal {
     position: fixed;
@@ -98,7 +98,7 @@
 }
 
 #signIn, #newAccount {
-    padding: 10px 10px;
+    
 }
 
 
