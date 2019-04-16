@@ -11,3 +11,13 @@
   firebase.initializeApp(config);
 
   const db = firebase.database();
+
+  $("#newAccount").on("click")
+
+  // <section id="newAccount">
+  //   <a href="module.html">Create a New Account</a>
+  // </section>
+
+  // <section id="signIn">
+  //   <a href="signin.html">Sign In</a>
+  // </section>
