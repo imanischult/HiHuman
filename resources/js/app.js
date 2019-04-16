@@ -11,7 +11,8 @@ firebase.initializeApp(config);
 
 const auth = firebase.auth();
 const db = firebase.database();
-const user = firebase.auth().currentUser;
+var is_register = false;
+var uid;
 
 
 // ++++ Sign-Up Modal Logic ++++ //
@@ -48,8 +49,22 @@ $close.on('click', function () {
 //new account functionality
 
 //so, we want to have a username because usernames are awesome; I''ll need to figure out how that's handled later.
-const newAuth = (email, username, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+const newAuth = (email, password, username) => {
+  console.log(email, password);
+  auth.createUserWithEmailAndPassword(email, password).then(function () {
+    db.ref('users').child(data.user.uid).set({
+      email: email,
+      key: uid,
+      username: username,
+      role: user,
+      mask: "",
+      icons: [],
+      reasons: [],
+      testsTaken: 0
+    })
+
+    console.log("user created")
+  }).catch(function (error) {
     // Handle Errors here.
     let errorCode = error.code;
     let errorMessage = error.message;
@@ -59,23 +74,11 @@ const newAuth = (email, username, password) => {
       $("<form>").append(errorMessage);
     }
     // console.log(error);
-  // }).then(user.updateProfile({
-  //   displayName: username,
-  //   // role: "User"
-  }).then(function () {
-    db.ref("users").push( {
-      email: email,
-      username: username,
-      role: user,
-      mask: "",
-      icons: [],
-      reasons: [],
-      testsTaken: 0
-    })
-    console.log("user created")
-  }).catch(function (error) {
-    console.log("something broke.")
-  })};
+    // }).then(user.updateProfile({
+    //   displayName: username,
+    //   // role: "User"
+  })
+}
 
 
 //sign in functionality. Firebase docs provides this. 
@@ -92,18 +95,30 @@ const signIn = (email, password) => {
 $("#newAccount").on("click", function (event) {
   event.preventDefault();
   //Capture all the data. Doing it this way because I try to avoid too many global variables.
+
   let email = $("#email").val().trim();
   let username = $("#user_name").val().trim();
   let pass = $("#password").val().trim();
   let passVal = $("#re-type_password").val().trim();
   //verify that the passwords match
-  if (pass === passVal) {
-    //if matching, then run the auth function with the variables above as parameters. 
-    newAuth(email, username, pass);
-  } else { // if not matching, show an error. 
-    $("#password").append("<p class='errorText'>passwords do not match</p>")
+  if (!is_register) {
+    if (pass === passVal) {
+      //if matching, then run the auth function with the variables above as parameters. 
+      newAuth(email, username, pass);
+    } else { // if not matching, show an error. 
+      $("#password").append("<p class='errorText'>passwords do not match</p>")
+    }
+  } else {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(function (data) {
+        showAuthView(true, data.user.email);
+      })
+      .catch(function () {
+
+      });
+
   }
-})
+});
 
 // admin page functionality
 
@@ -123,25 +138,70 @@ $("#newAccount").on("click", function (event) {
 // }
 
 //on clicking the make admin button on the admin page
-$("#make-admin").on("click", function (event) {
-  event.preventDefault();
-  let usrEmail = $("#adminEmail").val().trim();
-  //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
-  db.ref(`users/email`).on()
-  firebase.user
-    .then(function (UserInfo) {
-      // See the UserInfoUserInfo reference doc for the contents of UserInfo.
-      console.log('Successfully fetched user data:', UserInfo.toJSON());
-      let uid = UserInfo.uid;
-      setAdmin(uid);
-    })
-    .catch(function (error) {
-      console.log('Error fetching user data:', error);
+// $("#make-admin").on("click", function (event) {
+//   event.preventDefault();
+//   let usrEmail = $("#adminEmail").val().trim();
+//   //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
+//   db.ref(`users/email`).on()
+//   firebase.user
+//     .then(function (UserInfo) {
+//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
+//       console.log('Successfully fetched user data:', UserInfo.toJSON());
+//       let uid = UserInfo.uid;
+//       setAdmin(uid);
+//     })
+//     .catch(function (error) {
+//       console.log('Error fetching user data:', error);
+//     });
+// })
+function toggleRegisterState() {
+    $('.toggle span').toggleClass('toggled');
+
+    if (is_register) {
+      $('form h3').text('Sign Up');
+      $('form #confirm').show();
+    } else {
+      $('form h3').text('Log In');
+      $('form #confirm').hide();
+    }
+
+    is_register = !is_register;
+  }
+
+function checkAuthState() {
+    auth.onAuthStateChanged(function (user) {
+      if (user) {
+        uid = auth.currentUser.uid;
+
+        showAuthView(true, user.email);
+
+        db.ref('/users/' + user.uid).once('value', function (ref) {
+          console.log(ref.val());
+        })
+      } else {
+        showAuthView(false, null);
+      }
     });
+  }
 
 
+function logUserOut() {
+    auth.signOut().then(function () {
+      showAuthView(false, null);
+    }).catch(function (error) {
+      // An error happened.
+    });
+  }
 
-})
+function init() {
+    $('#submit').on('click', loginOrRegister);
+    $('#toggle-btn').on('click', toggleRegisterState);
+    $('#logout').on('click', logUserOut);
+    checkAuthState();
+  }
+
+// Start The App
+init();
 
 
 
