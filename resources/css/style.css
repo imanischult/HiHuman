@@ -37,8 +37,9 @@
 .white-text {
     font-weight: 700;
     text-align: center;
+    font-size: 40px;
 }
-
+ 
 /* Hi Human div box */
 #hiHumanBox {
     padding: 50px;

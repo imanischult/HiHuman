@@ -14,20 +14,22 @@ const db = firebase.database();
 var uid;
 
 
-// ++++ Sign-Up Modal Logic ++++ //
 
-// Get the modal
-var $modal = $('#signUpModal');
+  // ++++ Create New Profile Modal Logic ++++ //
+
+  // Get the modal
+var $createProfModal = $('#signUpModal');
 
 // Get the button that opens the modal
 var $newAcctBtn = $("#newAccountOpenModal");
 
 // Get the span element that closes the modal
-var $close = $(".close");
+var $closeCreate = $("#closeCreate");
 
 // When the user clicks the button, open the modal 
-$newAcctBtn.on('click', function () {
-  $modal.css('display', 'block')
+
+$newAcctBtn.on('click', function() {
+  $createProfModal.css('display','block')
 });
 
 // When the user clicks the "create account" button, open the instructions page
@@ -40,11 +42,40 @@ $('#nextBut').click(function() {
   window.location.href = 'chooseAMask.html';
 })
 
+//When the user clicks "sign in" button, open "user profile"
+$('#userAccount').click(function() {
+  window.location.href = 'userProfile.html';
+})
+
 // When the user clicks on <span> (x), close the modal
-$close.on('click', function() {
-  $modal.css('display','none')
+$closeCreate.on('click', function() {
+  $createProfModal.css('display','none')
   console.log(this)
 });
+
+
+  // ++++ Sign-In Modal Logic ++++ //
+
+  // Get the modal
+  var $signInModal = $('#signInModal');
+
+  // Get the button that opens the modal
+  var $signInBtn = $("#signIn");
+  
+  // Get the span element that closes the modal
+  var $closeSignIn = $("#closeSignIn");
+  
+  // When the user clicks the button, open the modal 
+  $signInBtn.on('click', function() {
+    $signInModal.css('display','block')
+  });
+  
+  // When the user clicks on <span> (x), close the modal
+  $closeSignIn.on('click', function() {
+    $signInModal.css('display','none')
+    console.log(this)
+  });
+
 
 // When the user clicks anywhere outside of the modal, close it
 // document.on('click', function(event) {
