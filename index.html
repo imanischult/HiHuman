@@ -39,7 +39,7 @@
 
                 <div class='row landingButtons'>
                     <a id='signIn' class="waves-effect waves-light btn">Sign In</a>
-                    <a id='newAccount'class="waves-effect waves-light btn">Create a New Account</a>
+                    <a id='newAccountOpenModal'class="waves-effect waves-light btn">Create a New Account</a>
                 </div>
 
             </div>
@@ -47,7 +47,7 @@
     </div>
 
 
-    <!-- The Sign Up Modal -->
+    <!-- *** The CREATE PROFILE Modal *** -->
 
     <div id="signUpModal" class='modal'>
 
@@ -55,7 +55,7 @@
         <div class="modal-content">
             <!-- Modal header -->
             <div class='card-panel grey modalHeader'>
-                <span class="close">&times;</span>
+                <span class='close' id="closeCreate">&times;</span>
 
                 <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
 
@@ -91,24 +91,26 @@
                 </form>
             </div>
 
+            <!-- Create account button within modal -->
             <div class='row'>
                 <div class="input-field col s8">
-                    <!-- Create account button within modal -->
                     <a id='newAccount'class="waves-effect waves-light btn">Create Account</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Materialize CSS Input Form for Sign In-->
+
+    <!-- *** The SIGN IN Modal *** -->
+
     <div id="signInModal" class='modal'>
 
         <!-- Modal content -->
         <div class="modal-content">
             <!-- Modal header -->
             <div class='card-panel grey modalHeader'>
-                <span class="close">&times;</span>
-                <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
+                <span class='close' id="closeSignIn">&times;</span>
+                <div class="modal-text white-text">Sign In</div>
             </div>
             <!-- Materialize CSS Input Form for Create Profile-->
             <div class="row">
@@ -127,6 +129,14 @@
                     </div>
                 </form>
             </div>
+
+            <!-- Create account button within modal -->
+            <div class='row'>
+                <div class="input-field col s8">
+                    <a id='userAccount'class="waves-effect waves-light btn">Sign In</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
