@@ -30,6 +30,10 @@ $newAcctBtn.on('click', function () {
   $modal.css('display', 'block')
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ac44292ca53ef876c4c78e24c94221f475be305
 // When the user clicks the "create account" button, open the instructions page
 $("#newAccount").click(function() {
   window.location.href = '#';
