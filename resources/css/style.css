@@ -4,6 +4,18 @@
     text-align: center;
     font-weight: 200;
 }
+span.white-text {
+    color: #fff !important;
+    font-size: 40px;
+    display: inherit;
+}
+.bnwhite-text {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
 
 .hhHomeBut {
     position: absolute;
@@ -13,6 +25,47 @@
 
 #hiHumanBox.card-panel.grey {
     margin: 50px;
+}
+.cNwhite-text {
+    font-weight: 700;
+    text-align: left;
+    font-size: 30px;
+    color: white;
+}
+
+.bNcard-panel.teal {
+    position: absolute;
+    bottom: -100px;
+    left: 80px;
+    margin: -1px;
+    padding: 8px;
+}
+.cNcard-panel.teal{
+    position: absolute;
+    bottom: -200px;
+    left: 100px;
+    margin: -1px;
+    padding: 8px;
+
+
+}
+.fIcard-panel.teal {
+    position: absolute;
+    bottom: -300px;
+    left: 100px;
+    margin: -1px;
+    padding: 8px;
+}
+.col.s12.m5 {
+    position: absolute;
+    width: 500px;
+    right: 29pc;
+    bottom: 350px;
+}
+a.waves-effect.waves-light.btn {
+    position: absolute;
+    bottom: -280px;
+    right: 20px;
 }
 
 .footer-copyright.footer {
@@ -31,7 +84,7 @@
 #nextBut {
     position: absolute;
     margin: 70px;
-    right: 145px;
+    right: 115px;
 }
 
 .white-text {
@@ -46,6 +99,9 @@
     font-size: 90px;
     text-align: center;
 }
+
+
+
 
 /* Styling the modal */
 
@@ -101,4 +157,48 @@
     
 }
 
-
+/* button BN for choose reason page */
+.bnBut {
+    background: #ff9900;
+    background: linear-gradient(#ff9900, #ff9900);
+    border: 1px solid #ff9901;
+    border-radius: 5px;
+    box-shadow: 0 1px #ff9904;
+    width: 57px;
+    height: 45px;
+    color: #ffffff;
+    display: inline-block;
+    font: normal bold 26px/45px "Arvo", serif;
+    text-align: center;
+    text-shadow: 1px 1px #000000;
+    position: relative;
+    left: 5px;
+}
+.cnBut {
+    background:    #ff0000;
+background:    linear-gradient(#ff0000, #ff0068);
+border:        1px solid #556699;
+border-radius: 5px;
+box-shadow:    0 1px #444444;
+width:         55px;
+height:        50px;
+color:         #ffffff;
+display:       inline-block;
+font:          normal bold 24px/50px "Playfair Display", serif;
+text-align:    center;
+text-shadow:   1px 1px #000000;
+}
+.fiBut {
+    background:    #0000ff;
+background:    linear-gradient(#0000ff, #9900ff);
+border:        1px solid #556699;
+border-radius: 5px;
+box-shadow:    0 1px #444444;
+width:         55px;
+height:        50px;
+color:         #ffffff;
+display:       inline-block;
+font:          normal bold 24px/50px "Playfair Display", serif;
+text-align:    center;
+text-shadow:   1px 1px #000000;
+}
