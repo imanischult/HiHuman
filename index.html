@@ -59,10 +59,10 @@
         </div>
 
 
-<!-- *** The SIGN UP Modal *** -->
+<!-- *** The Create New Profile Modal *** -->
 
 
-        <div id="signUpModal" class='modal'>
+    <div id="signUpModal" class='modal'>
 
 
         <!-- Modal content -->
@@ -70,40 +70,39 @@
             <!-- Modal header -->
             <div class='card-panel grey modalHeader'>
                 <span class='close' id="closeCreate">&times;</span>
+                <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
+            </div>
 
-                    <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
+            <!-- Materialize CSS Input Form for Create Profile-->
+            <div class="row">
+                <form name="signUpForm" class="col s7">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="email" type="text" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="user_name" type="text" class="validate">
 
-                </div>
-                <!-- Materialize CSS Input Form for Create Profile-->
-                <div class="row">
-                    <form name="signUpForm" class="col s7">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="signUpForm" id="email" type="text" class="validate">
-                                <label for="email">Email</label>
-                            </div>
+                            <label for="user_name">Username</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="signUpForm" id="user_name" type="text" class="validate">
-
-                                <label for="user_name">Username</label>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="userPassword" type="password" class="validate">
+                            <label for="userPassword">Password</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="signUpForm" id="userPassword" type="password" class="validate">
-                                <label for="userPassword">Password</label>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="re-type_password" type="password" class="validate">
+                            <label for="re-type_password">Re-type Password</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input name="signUpForm" id="re-type_password" type="password" class="validate">
-                                <label for="re-type_password">Re-type Password</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+            </div>
 
 
             <!-- Create account button within modal -->
@@ -114,6 +113,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
 
@@ -128,40 +128,39 @@
                 <span class='close' id="closeSignIn">&times;</span>
                 <div class="modal-text white-text">Sign In</div>
             </div>
-            <!-- Materialize CSS Input Form for Create Profile-->
-            <div class="row">
-                <form class="col s7">
+        <!-- Materialize CSS Input Form for Create Profile-->
+        <div class="row">
+            <form class="col s7">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="userSignIn" type="email" class="validate">
+                        <label for='userSignIn'>Email</label>
+                    </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="userSignIn" type="email" class="validate">
-                            <label for='userSignIn'>Email</label>
+                            <input id="user_password" type="password" class="validate">
+                            <label for="user_password">Password</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="user_password" type="password" class="validate">
-                                <label for="user_password">Password</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <!-- Create account button within modal -->
-            <div class='row'>
-                <div class="input-field col s8">
-                    <a id='userAccount'class="waves-effect waves-light btn">Sign In</a>
-                </div>
+        <!-- Create account button within modal -->
+        <div class='row'>
+            <div class="input-field col s8">
+                <a id='userAccount'class="waves-effect waves-light btn">Sign In</a>
             </div>
-
         </div>
     </div>
     
-
-        <!-- <div class="footer-copyright">
-                <div class="container">
-                © 2014 Copyright Text
-                </div>
-                </div> -->
+    <footer class="page-footer">
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          </div>
+        </div>
+    </footer>
                 
                 
         <!-- Firebase Links -->
