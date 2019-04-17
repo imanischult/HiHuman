@@ -132,7 +132,8 @@ const signUp = (event) => {
             testsTaken: [],
             noTestsTaken: 0
           })
-          console.log("user created")
+          console.log("user created");
+          // window.location.href = 'hhInstructions.html'
         } catch (error) {
           console.log(`Error creating database entry for user! --> ${error}`);
         }
@@ -150,7 +151,7 @@ const signUp = (event) => {
     //   $("#password").append("<p class='errorText'>passwords do not match</p>")
     // }
     $("input").val(" ");
-    window.location.href = 'hhInstructions.html';
+    
 };
 
 
