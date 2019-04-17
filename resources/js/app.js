@@ -41,9 +41,9 @@ $('#nextBut').click(function() {
   window.location.href = 'chooseAMask.html';
 })
 
-// When the user clicks the "sign in" button, open the sign in page
-$('#signIn').click(function(){
-  window.location.href = 'signIn.html';
+//When the user clicks "sign in" button, open "user profile"
+$('#userAccount').click(function() {
+  window.location.href = 'userProfile.html';
 })
 
 // When the user clicks on <span> (x), close the modal
