@@ -30,27 +30,27 @@ var $closeCreate = $("#closeCreate");
 
 $newAcctBtn.on('click', function() {
   $createProfModal.css('display','block')
+  console.log(this)
 });
 
 // When the user clicks the "create account" button, open the instructions page
 $("#newAccount").click(function() {
-  
-})
+  window.location.href = 'hhInstructions.html';
+});
 
 // When the user clicks "next" button, open "choose mask page"
 $('#nextBut').click(function() {
   window.location.href = 'chooseAMask.html';
-})
+});
 
 //When the user clicks "sign in" button, open "user profile"
 $('#userAccount').click(function() {
   // window.location.href = 'userProfile.html';
-})
+});
 
 // When the user clicks on <span> (x), close the modal
 $closeCreate.on('click', function() {
   $createProfModal.css('display','none')
-  console.log(this)
 });
 
 
@@ -77,12 +77,6 @@ $closeCreate.on('click', function() {
   });
 
 
-// When the user clicks anywhere outside of the modal, close it
-// document.on('click', function(event) {
-//   if (event.target == $modal) {
-//     $modal.css('display', 'none')
-//   }
-// });
 
 
 
