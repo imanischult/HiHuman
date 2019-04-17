@@ -6,7 +6,7 @@
 }
 span.white-text {
     color: #fff !important;
-    font-size: 40px;
+    font-size: 80px;
     display: inherit;
 }
 .bnwhite-text {
@@ -14,8 +14,12 @@ span.white-text {
     font-size: 30px;
     font-weight: 700;
 }
-
-
+/* below .inwhite is for instructions/about us page */
+span.inwhite-text {
+    color: #fff !important;
+    font-size: 20px;
+    display: inherit;
+}
 
 .hhHomeBut {
     position: absolute;
@@ -24,7 +28,7 @@ span.white-text {
 }
 
 #hiHumanBox.card-panel.grey {
-    margin: 50px;
+    margin: 30px;
 }
 .cNwhite-text {
     font-weight: 700;
@@ -35,14 +39,14 @@ span.white-text {
 
 .bNcard-panel.teal {
     position: absolute;
-    bottom: -100px;
+    bottom: -200px;
     left: 80px;
     margin: -1px;
     padding: 8px;
 }
 .cNcard-panel.teal{
     position: absolute;
-    bottom: -200px;
+    bottom: -300px;
     left: 100px;
     margin: -1px;
     padding: 8px;
@@ -51,7 +55,7 @@ span.white-text {
 }
 .fIcard-panel.teal {
     position: absolute;
-    bottom: -300px;
+    bottom: -400px;
     left: 100px;
     margin: -1px;
     padding: 8px;
@@ -62,29 +66,67 @@ span.white-text {
     right: 29pc;
     bottom: 350px;
 }
-a.waves-effect.waves-light.btn {
+/* below a.cwaves and a.swaves is for sign in and create acc buttons on homepage */
+a.swaves-effect.waves-light.btn {
     position: absolute;
-    bottom: -280px;
-    right: 20px;
+    bottom: -240px;
+    right: 200px;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    width: 18rem;
+    padding: 0 6px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 700;
+}
+a.cwaves-effect.waves-light.btn {
+    position: absolute;
+    bottom: -40px;
+    right: -180px;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    width: 18rem;
+    padding: 0 6px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 700;
+}
+/* footer  */
+.footer-copyright {
+     
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      
+    
+    
+    
+      
 }
 
-.footer-copyright.footer {
-    position: absolute;
-    bottom: -7px;
-    left: 650px;
-}
+/* /* below .incard is for instructions/about us teal box */
 
-/* HH instruction page */
-
-.card-panel.teal {
+.incard-panel.teal {
     position: fixed;
-    width: 500px;
-    right: 29pc;
+    width: 800px;
+    top: 350px;
+    right: 19.4pc;
+    margin: 10px;
+    padding: 30px;
 }
 #nextBut {
     position: absolute;
     margin: 70px;
     right: 115px;
+    bottom: -400px;
 }
 
 .white-text {
@@ -100,8 +142,22 @@ a.waves-effect.waves-light.btn {
     text-align: center;
 }
 
+/* choose your mask teal box */
+.cymcard-panel.teal {
+    padding: 30px;
+    text-align: center;
+    margin: 20px;
+    position: absolute;
+    top: -25px;
+}
 
-
+/* choose your mask text in teal box */
+.cymwhite-text {
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 800;
+}
 
 /* Styling the modal */
 
@@ -150,10 +206,16 @@ a.waves-effect.waves-light.btn {
 }
 
 .landingButtons {
-    margin: 30px;
+    margin: 0px;
+    position: absolute;
+    top: -200px;
 }
 
-#signIn, #newAccount {
+#signIn {
+
+} 
+
+#newAccount {
     
 }
 
@@ -201,4 +263,20 @@ display:       inline-block;
 font:          normal bold 24px/50px "Playfair Display", serif;
 text-align:    center;
 text-shadow:   1px 1px #000000;
+}
+/* teal box on reasons page */
+.recard-panel.teal {
+    padding: 15px;
+    text-align: center;
+    margin: 20px;
+    position: absolute;
+    top: -30px;
+}
+/* text in teal box on reasons page */
+.rewhite-text {
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 30px;
+    
 }
