@@ -21,7 +21,7 @@ const user = firebase.auth().currentUser;
 var $modal = $('#signUpModal');
 
 // Get the button that opens the modal
-var $newAcctBtn = $("#newAccount");
+var $newAcctBtn = $("#newAccountOpenModal");
 
 // Get the span element that closes the modal
 var $close = $(".close");
@@ -30,6 +30,16 @@ var $close = $(".close");
 $newAcctBtn.on('click', function() {
   $modal.css('display','block')
 });
+
+// When the user clicks the "create account" button, open the instructions page
+$("#newAccount").click(function() {
+  window.location.href = 'hhInstructions.html';
+})
+
+// When the user clicks "next" button, open "choose mask page"
+$('#nextBut').click(function() {
+  window.location.href = 'chooseAMask.html';
+})
 
 // When the user clicks on <span> (x), close the modal
 $close.on('click', function() {
