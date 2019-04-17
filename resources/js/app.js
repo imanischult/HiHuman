@@ -11,7 +11,6 @@ firebase.initializeApp(config);
 
 const auth = firebase.auth();
 const db = firebase.database();
-var is_register = false;
 var uid;
 
 
@@ -33,7 +32,7 @@ $newAcctBtn.on('click', function () {
 
 // When the user clicks the "create account" button, open the instructions page
 $("#newAccount").click(function() {
-  window.location.href = 'hhInstructions.html';
+  window.location.href = '#';
 })
 
 // When the user clicks "next" button, open "choose mask page"
@@ -90,17 +89,22 @@ const signUp = (event) => {
     // if (pass === passVal) {
       //if matching, then run the auth function with the variables above as parameters. 
       auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
-        db.ref('users').child(data.user.uid).set({
-          email: email,
-          key: uid,
-          username: username,
-          role: user,
-          mask: "",
-          icons: [],
-          reasons: [],
-          testsTaken: 0
-        })
-        console.log("user created")
+        try {
+          db.ref('users').child(data.user.uid).set({
+            email: data.user.email,
+            key: data.user.uid,
+            username: username,
+            role: "",
+            mask: "",
+            icons: [],
+            reasons: [],
+            testsTaken: [],
+            noTestsTaken: 0
+          })
+          console.log("user created")
+        } catch (error) {
+          console.log(`Error creating database entry for user! --> ${error}`);
+        }
       }).catch(function (error) {
         // Handle Errors here.
         let errorCode = error.code;
