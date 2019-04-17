@@ -99,18 +99,6 @@ a.cwaves-effect.waves-light.btn {
     -webkit-tap-highlight-color: transparent;
     font-weight: 700;
 }
-/* footer  */
-.footer-copyright {
-     
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-      
-    
-    
-    
-      
-}
 
 /* /* below .incard is for instructions/about us teal box */
 
