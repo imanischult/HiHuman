@@ -53,16 +53,18 @@ $close.on('click', function () {
 
 
 
-// //sign in functionality. Firebase docs provides this. 
-// const signIn = (event, email, password) => {
-//   event.preventDefault();
-//   firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // ...
-//   });
-// }
+//sign in functionality. Firebase docs provides this. 
+const signIn = (event, email, password) => {
+  let email = $("#userSignIn").val().trim();
+  let password = $("#user_password").val().trim();
+  event.preventDefault();
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+}
 
 //create a new account when the newAccount button is clicked. 
 const signUp = (event) => {
@@ -88,7 +90,6 @@ const signUp = (event) => {
           reasons: [],
           testsTaken: 0
         })
-    
         console.log("user created")
       }).catch(function (error) {
         // Handle Errors here.
@@ -103,7 +104,7 @@ const signUp = (event) => {
     // } else { // if not matching, show an error. 
     //   $("#password").append("<p class='errorText'>passwords do not match</p>")
     // }
-    $("form").val("");
+    $("input").val(" ");
 };
 
 
@@ -182,7 +183,7 @@ const signUp = (event) => {
 
 function init() {
     $('#newAccount').on('click', signUp);
-    // $('#sign-in').on('click', signIn);
+    $('#userAccount').on('click', signIn);
     // $('#logout').on('click', logUserOut);
     // checkAuthState();
   }
