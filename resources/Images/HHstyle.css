@@ -1,0 +1,59 @@
+
+.hhhHead {
+    margin: auto;
+    position: absolute;
+    top: 100px;
+    left: 428px;
+    border: solid;
+    background-color: aliceblue;
+    height: 380px;
+    width: 500px;
+    padding: 50px;
+}
+.createAcc {
+    margin: auto;
+    position: absolute;
+    top: 100px;
+    left: 428px;
+    border: solid;
+    background-color: aliceblue;
+    height: 680px;
+    width: 600px;
+    padding: 50px;
+}
+.signIn {
+
+}
+
+h1 {
+    text-align: center;
+    border: white;
+    font-size: 60px;
+    border: gray;
+    border-style: solid;
+    background-color: grey;
+    border-width: 20px;
+}
+
+.motto {
+    text-align: center;
+    font-size: 30px;
+}
+.cya {
+    text-align: center;
+    font-size: 30px;
+    margin: 40px;
+}
+#cyaButton {
+    position: absolute;
+    left: 214px;
+    margin: 28px;
+}
+.homeBut {
+    text-align: center;
+    
+}
+
+div {
+    
+}
