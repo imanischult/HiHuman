@@ -30,13 +30,9 @@ $newAcctBtn.on('click', function () {
   $modal.css('display', 'block')
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ac44292ca53ef876c4c78e24c94221f475be305
 // When the user clicks the "create account" button, open the instructions page
 $("#newAccount").click(function() {
-  window.location.href = '#';
+  
 })
 
 // When the user clicks "next" button, open "choose mask page"
@@ -123,6 +119,7 @@ const signUp = (event) => {
     //   $("#password").append("<p class='errorText'>passwords do not match</p>")
     // }
     $("input").val(" ");
+    window.location.href = 'hhInstructions.html';
 };
 
 
