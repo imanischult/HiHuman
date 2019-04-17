@@ -94,11 +94,11 @@ $closeCreate.on('click', function() {
 
 
 //sign in functionality. Firebase docs provides this. 
-const signIn = (event, email, password) => {
-  let email = $("#userSignIn").val().trim();
-  let password = $("#user_password").val().trim();
+const signIn = (event) => {
+  let usrEmail = $("#userSignIn").val().trim();
+  let usrPassword = $("#user_password").val().trim();
   event.preventDefault();
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+  firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -110,7 +110,6 @@ const signIn = (event, email, password) => {
 const signUp = (event) => {
   event.preventDefault();
   //Capture all the data. Doing it this way because I try to avoid too many global variables.
-
   let email = $("#email").val().trim();
   let username = $("#user_name").val().trim();
   let pass = $("#userPassword").val().trim();
@@ -133,7 +132,7 @@ const signUp = (event) => {
             noTestsTaken: 0
           })
           console.log("user created");
-          // window.location.href = 'hhInstructions.html'
+          
         } catch (error) {
           console.log(`Error creating database entry for user! --> ${error}`);
         }
@@ -151,8 +150,10 @@ const signUp = (event) => {
     //   $("#password").append("<p class='errorText'>passwords do not match</p>")
     // }
     $("input").val(" ");
+    return "user created";
     
 };
+
 
 
 // // admin page functionality
@@ -230,7 +231,7 @@ const signUp = (event) => {
 
 function init() {
     $('#newAccount').on('click', signUp);
-    $('#userAccount').on('click', signIn);
+    $('#signIn').on('click', signIn);
     // $('#logout').on('click', logUserOut);
     // checkAuthState();
   }
