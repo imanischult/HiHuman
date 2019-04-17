@@ -31,9 +31,19 @@ $newAcctBtn.on('click', function () {
   $modal.css('display', 'block')
 });
 
-// When the user clicks on <span> (x), or the account creation button, close the modal
-$close.on('click', function () {
-  $modal.css('display', 'none')
+// When the user clicks the "create account" button, open the instructions page
+$("#newAccount").click(function() {
+  window.location.href = 'hhInstructions.html';
+})
+
+// When the user clicks "next" button, open "choose mask page"
+$('#nextBut').click(function() {
+  window.location.href = 'chooseAMask.html';
+})
+
+// When the user clicks on <span> (x), close the modal
+$close.on('click', function() {
+  $modal.css('display','none')
   console.log(this)
 });
 
