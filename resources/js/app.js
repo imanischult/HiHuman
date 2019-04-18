@@ -15,9 +15,9 @@ var uid;
 
 
 
-  // ++++ Create New Profile Modal Logic ++++ //
+// ++++ Create New Profile Modal Logic ++++ //
 
-  // Get the modal
+// Get the modal
 var $createProfModal = $('#signUpModal');
 
 // Get the button that opens the modal
@@ -28,53 +28,53 @@ var $closeCreate = $("#closeCreate");
 
 // When the user clicks the button, open the modal 
 
-$newAcctBtn.on('click', function() {
-  $createProfModal.css('display','block')
+$newAcctBtn.on('click', function () {
+  $createProfModal.css('display', 'block')
   console.log(this)
 });
 
-// When the user clicks the "create account" button, open the instructions page
-$("#newAccount").click(function() {
-  window.location.href = 'hhInstructions.html';
+// When the user clicks the "create account" button, create the account
+$("#newAccount").click(function () {
+  signUp(event);
 });
 
 // When the user clicks "next" button, open "choose mask page"
-$('#nextBut').click(function() {
+$('#nextBut').click(function () {
   window.location.href = 'chooseAMask.html';
 });
 
 //When the user clicks "sign in" button, open "user profile"
-$('#userAccount').click(function() {
+$('#userAccount').click(function () {
   // window.location.href = 'userProfile.html';
 });
 
 // When the user clicks on <span> (x), close the modal
-$closeCreate.on('click', function() {
-  $createProfModal.css('display','none')
+$closeCreate.on('click', function () {
+  $createProfModal.css('display', 'none')
 });
 
 
-  // ++++ Sign-In Modal Logic ++++ //
+// ++++ Sign-In Modal Logic ++++ //
 
-  // Get the modal
-  var $signInModal = $('#signInModal');
+// Get the modal
+var $signInModal = $('#signInModal');
 
-  // Get the button that opens the modal
-  var $signInBtn = $("#signIn");
-  
-  // Get the span element that closes the modal
-  var $closeSignIn = $("#closeSignIn");
-  
-  // When the user clicks the button, open the modal 
-  $signInBtn.on('click', function() {
-    $signInModal.css('display','block')
-  });
-  
-  // When the user clicks on <span> (x), close the modal
-  $closeSignIn.on('click', function() {
-    $signInModal.css('display','none')
-    console.log(this)
-  });
+// Get the button that opens the modal
+var $signInBtn = $("#signIn");
+
+// Get the span element that closes the modal
+var $closeSignIn = $("#closeSignIn");
+
+// When the user clicks the button, open the modal 
+$signInBtn.on('click', function () {
+  $signInModal.css('display', 'block')
+});
+
+// When the user clicks on <span> (x), close the modal
+$closeSignIn.on('click', function () {
+  $signInModal.css('display', 'none')
+  console.log(this)
+});
 
 
 
@@ -92,10 +92,13 @@ const signIn = (event) => {
   let usrEmail = $("#userSignIn").val().trim();
   let usrPassword = $("#user_password").val().trim();
   event.preventDefault();
-  firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).catch(function (error) {
+  firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
+    checkLogin()
+  ).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
     // ...
   });
 }
@@ -110,45 +113,62 @@ const signUp = (event) => {
   let passVal = $("#re-type_password").val().trim();
   console.log(email, username, pass, passVal);
   //verify that the passwords match
-    // if (pass === passVal) {
-      //if matching, then run the auth function with the variables above as parameters. 
-      auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
-        try {
-          db.ref('users').child(data.user.uid).set({
-            email: data.user.email,
-            key: data.user.uid,
-            username: username,
-            role: "",
-            mask: "",
-            icons: [],
-            reasons: [],
-            testsTaken: [],
-            noTestsTaken: 0
-          })
-          console.log("user created");
-          
-        } catch (error) {
-          console.log(`Error creating database entry for user! --> ${error}`);
-        }
-      }).catch(function (error) {
-        // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        if (errorCode == 'auth/email-already-in-use') {
-          $("#email").append("<p class='errorText'>this email already exists in the system</p>");
-        } else {
-          $("<form>").append(errorMessage);
-        }
+  // if (pass === passVal) {
+  //if matching, then run the auth function with the variables above as parameters. 
+  auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
+    try {
+      db.ref('users').child(data.user.uid).set({
+        email: data.user.email,
+        key: data.user.uid,
+        username: username,
+        role: "",
+        mask: "",
+        icons: [],
+        reasons: [],
+        testsTaken: [],
+        noTestsTaken: 0
       })
-    // } else { // if not matching, show an error. 
-    //   $("#password").append("<p class='errorText'>passwords do not match</p>")
-    // }
-    $("input").val(" ");
-    return "user created";
-    
+      console.log("user created").then(window.location = 'hhinstructions.html');
+
+    } catch (error) {
+      console.log(`Error creating database entry for user! --> ${error}`);
+    }
+  }).catch(function (error) {
+    // Handle Errors here.
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    if (errorCode == 'auth/email-already-in-use') {
+      $("#email").append("<p class='errorText'>this email already exists in the system</p>");
+    } else {
+      $("<form>").append(errorMessage);
+    }
+  })
+  // } else { // if not matching, show an error. 
+  //   $("#password").append("<p class='errorText'>passwords do not match</p>")
+  // }
+  $("input").val(" ");
+  return "user created";
+
 };
 
 
+//event listener to move the user to another page once they are actually logged in, and to hide/show login and sign up links.
+const checkLogin = () => {
+  auth.onAuthStateChanged(user => {
+  if(user) {
+    console.log("checking login state")
+    if( firstLogin) {
+      window.location = 'hhinstructions.html'; //the first time the user logs in, redirect to hhinstructions.html
+      
+    }
+    window.location = 'userProfile.html'; //After successful login, user will be redirected to userProfile.html; This will eventually need to be their specific login page.
+
+  } else {
+    
+  }
+});
+
+}
 
 // // admin page functionality
 
@@ -215,20 +235,22 @@ const signUp = (event) => {
 //   }
 
 
-// function logUserOut() {
-//     auth.signOut().then(function () {
-//       showAuthView(false, null);
-//     }).catch(function (error) {
-//       // An error happened.
-//     });
-//   }
+function logUserOut() {
+  auth.signOut().then(function () {
+    showAuthView(false, null);
+  }).catch(function (error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  });
+}
 
 function init() {
-    $('#newAccount').on('click', signUp);
-    $('#signIn').on('click', signIn);
-    // $('#logout').on('click', logUserOut);
-    // checkAuthState();
-  }
+  // $('#newAccount').on('click', signUp);
+  $('#userAccount').on('click', signIn);
+  $('#logout').on('click', logUserOut);
+  // checkAuthState();
+}
 
 // Start The App
 init();
