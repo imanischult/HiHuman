@@ -91,29 +91,35 @@ const signIn = (event) => {
   let usrEmail = $("#userSignIn").val().trim();
   let usrPassword = $("#user_password").val().trim();
   event.preventDefault();
-  firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
-    checkLogin()
-  ).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log(errorCode, errorMessage);
-  });
+  // auth.setPersistence(auth.Auth.Persistence.SESSION)
+  //   .then(function () {
+      firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
+        checkLogin()
+      ).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+    // });
 }
 
 
-//event listener to check for log in and hide Login/Sign Up buttons
+//event listener to check for log in and do various things
 const checkLogin = () => {
   auth.onAuthStateChanged(user => {
-  if(user) {
-    console.log("checking login state")
-    
-      
-  } else {
-    window.location.replace('index.html');
-    
-  }
-});
+    if (user) {
+      console.log("logged in")
+      uid = auth.currentUser.uid;
+
+
+    } else {
+      //if the user isn't logged in, kick them to the login page. 
+      window.location.replace('index.html');
+      console.log("not authed!");
+
+    }
+  });
 
 }
 
@@ -130,43 +136,44 @@ const signUp = (event) => {
   //verify that the passwords match -- this is disabled for the moment because it's throwing a 400 instead.
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
-  auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
-    try {
-      db.ref('users').child(data.user.uid).set({
-        email: data.user.email,
-        key: data.user.uid,
-        username: username,
-        newUser: true,
-        role: "",
-        mask: "",
-        icons: [],
-        reasons: [],
-        testsTaken: [],
-        noTestsTaken: 0
+  auth().setPersistence(auth.Auth.Persistence.SESSION)
+    .then(function () {
+      auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
+        try {
+          db.ref('users').child(data.user.uid).set({
+            email: data.user.email,
+            key: data.user.uid,
+            username: username,
+            newUser: true,
+            isAdmin: false,
+            mask: "",
+            icons: [],
+            reasons: [],
+            testsTaken: [],
+            noTestsTaken: 0
+          })
+          console.log("user created");
+
+        } catch (error) {
+          console.log(`Error creating database entry for user! --> ${error}`);
+        }
+      }).then(function () {
+        checkLogin();
+        window.location.replace('hhinstructions.html');
+      }).catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        if (errorCode == 'auth/email-already-in-use') {
+          $("#email").append("<p class='errorText'>this email already exists in the system</p>");
+        }
       })
-      console.log("user created");
-
-    } catch (error) {
-      console.log(`Error creating database entry for user! --> ${error}`);
-    }
-  }).then(function() { 
-    checkLogin();
-    window.location.replace('hhinstructions.html');
-  }).catch(function (error) {
-    // Handle Errors here.
-    let errorCode = error.code;
-    let errorMessage = error.message;
-    if (errorCode == 'auth/email-already-in-use') {
-      $("#email").append("<p class='errorText'>this email already exists in the system</p>");
-    } else {
-      $("<form>").append(errorMessage);
-    }
-  })
-  // } else { // if not matching, show an error. 
-  //   $("#password").append("<p class='errorText'>passwords do not match</p>")
-  // }
-  return "user created";
-
+      // } else { // if not matching, show an error. 
+      //   $("#password").append("<p class='errorText'>passwords do not match</p>")
+      // }
+      return "user created";
+    })
 };
 
 
@@ -177,7 +184,7 @@ const signUp = (event) => {
 
 //this function takes a userid from the database and gives them the admin role
 // const setAdmin = (uid) => {
-//   db.ref().on("child_added", function(childSnapshot) {
+//   db.ref("users").on("child_added", function(childSnapshot) {
 //     role: admin
 //   })
 //     .then(function (UserInfo) {
@@ -239,7 +246,8 @@ const signUp = (event) => {
 
 function logUserOut() {
   auth.signOut().then(function () {
-    showAuthView(false, null);
+    // showAuthView(false, null);
+    checkLogin();
   }).catch(function (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
