@@ -26,39 +26,45 @@ span.inwhite-text {
     right: 502px;
     margin: 70px;
 }
-
+/* "Hi, Human grey box on homepage */
 #hiHumanBox.card-panel.grey {
-    margin: 30px;
+    margin: 80px;
 }
+/* casual networking text inside teal box */
 .cNwhite-text {
     font-weight: 700;
     text-align: left;
     font-size: 30px;
     color: white;
 }
-
+/* teal business networking box on reason page */
 .bNcard-panel.teal {
     position: absolute;
-    bottom: -200px;
-    left: 80px;
+    bottom: 20px;
+    left: 54px;
     margin: -1px;
     padding: 8px;
+    width: 381px;
+    border-radius: 2px;
 }
+/* teal casual networking box on reason page */
 .cNcard-panel.teal{
     position: absolute;
-    bottom: -300px;
-    left: 100px;
+    bottom: -70px;
+    left: 74.5px;
     margin: -1px;
     padding: 8px;
-
+    border-radius: 2px;
 
 }
+/* teal finding inspiration box on reason page */
 .fIcard-panel.teal {
     position: absolute;
-    bottom: -400px;
-    left: 100px;
+    bottom: -160px;
+    left: 77.5px;
     margin: -1px;
     padding: 8px;
+    border-radius: 2px;
 }
 .col.s12.m5 {
     position: absolute;
@@ -74,14 +80,16 @@ a.swaves-effect.waves-light.btn {
     border: none;
     border-radius: 2px;
     display: inline-block;
-    height: 36px;
+    height: 46px;
     line-height: 36px;
     width: 18rem;
-    padding: 0 6px;
+    padding: 6px;
     text-transform: uppercase;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
     font-weight: 700;
+    text-align: center;
+    font-size: large;
 }
 a.cwaves-effect.waves-light.btn {
     position: absolute;
@@ -90,14 +98,16 @@ a.cwaves-effect.waves-light.btn {
     border: none;
     border-radius: 2px;
     display: inline-block;
-    height: 36px;
+    height: 46px;
     line-height: 36px;
     width: 18rem;
-    padding: 0 6px;
+    padding: 6px;
     text-transform: uppercase;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
     font-weight: 700;
+    text-align: center;
+    font-size: large;
 }
 /* footer  */
 .footer-copyright {
@@ -117,16 +127,21 @@ a.cwaves-effect.waves-light.btn {
 .incard-panel.teal {
     position: fixed;
     width: 800px;
-    top: 350px;
+    top: 150px;
     right: 19.4pc;
     margin: 10px;
     padding: 30px;
+    border-radius: 2px;
 }
 #nextBut {
     position: absolute;
     margin: 70px;
-    right: 115px;
-    bottom: -400px;
+    right: 285px;
+    bottom: -440px;
+    
+}
+a.nwaves-effect.waves-light.btn {
+    font-weight: 900;
 }
 
 .white-text {
@@ -144,17 +159,20 @@ a.cwaves-effect.waves-light.btn {
 
 /* choose your mask teal box */
 .cymcard-panel.teal {
-    padding: 30px;
+    padding: 15px;
     text-align: center;
     margin: 20px;
     position: absolute;
-    top: -25px;
+    top: -255px;
+    left: -175px;
+    border-radius: 2px;
+    width: 800px;
 }
 
 /* choose your mask text in teal box */
 .cymwhite-text {
     color: white;
-    font-size: 32px;
+    font-size: 42px;
     text-align: center;
     font-weight: 800;
 }
@@ -236,6 +254,7 @@ a.cwaves-effect.waves-light.btn {
     position: relative;
     left: 5px;
 }
+/* button CN for choose reason page */
 .cnBut {
     background:    #ff0000;
 background:    linear-gradient(#ff0000, #ff0068);
@@ -250,6 +269,7 @@ font:          normal bold 24px/50px "Playfair Display", serif;
 text-align:    center;
 text-shadow:   1px 1px #000000;
 }
+/* button FI for choose reason page */
 .fiBut {
     background:    #0000ff;
 background:    linear-gradient(#0000ff, #9900ff);
@@ -270,13 +290,71 @@ text-shadow:   1px 1px #000000;
     text-align: center;
     margin: 20px;
     position: absolute;
-    top: -30px;
+    top: -255px;
+    left: -175.8px;
+    width: 800px;
 }
 /* text in teal box on reasons page */
 .rewhite-text {
     color: white;
-    font-size: 32px;
+    font-size: 42px;
     font-weight: 700;
     padding: 30px;
     
+}
+/* choose masks buttons row 1 */
+#saveForm.btTxt.submit {
+    margin: 20px;
+    position: absolute;
+    top: 288px;
+    height: 170px;
+}
+/* second row of masks */
+#tsaveForm.btTxt.submit {
+    margin: 20px;
+    position: absolute;
+    top: 528px;
+    height: 170px;
+}
+/* [HiH] logo in navbar */
+a.brand-logo {
+    font-weight: 800;
+}
+
+/* next button mask page */
+#cymnextBut {
+    position: absolute;
+    margin: 70px;
+    right: 655px;
+    bottom: -240px;
+}
+
+/* icons page  */
+.div.row {
+    position: absolute;
+    bottom: 800px;
+}
+
+#mbsaveForm.btTxt.submit {
+    margin: 20px;
+    position: absolute;
+    top: 288px;
+    height: 120px;
+}
+.cytcard-panel.teal {
+    padding: 15px;
+    text-align: center;
+    margin: 20px;
+    position: absolute;
+    top: -255px;
+    left: -175px;
+    border-radius: 2px;
+    width: 800px;
+}
+
+.cytwhite-text {
+    color: white;
+    font-size: 42px;
+    padding: 30px;
+    font-weight: 700;
 }
