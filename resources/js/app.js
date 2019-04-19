@@ -5,7 +5,8 @@ var config = {
   authDomain: "hiawesomehumans.firebaseapp.com",
   databaseURL: "https://hiawesomehumans.firebaseio.com",
   projectId: "hiawesomehumans",
-  messagingSenderId: "501987551176"
+  messagingSenderId: "501987551176",
+  name: "Hi Humans!"
 };
 firebase.initializeApp(config);
 
@@ -121,6 +122,7 @@ const signUp = (event) => {
         email: data.user.email,
         key: data.user.uid,
         username: username,
+        newUser: true,
         role: "",
         mask: "",
         icons: [],
@@ -128,11 +130,13 @@ const signUp = (event) => {
         testsTaken: [],
         noTestsTaken: 0
       })
-      console.log("user created").then(window.location = 'hhinstructions.html');
+      console.log("user created");
 
     } catch (error) {
       console.log(`Error creating database entry for user! --> ${error}`);
     }
+  }).then(function() { 
+    window.location.replace('hhinstructions.html');
   }).catch(function (error) {
     // Handle Errors here.
     let errorCode = error.code;
@@ -153,22 +157,23 @@ const signUp = (event) => {
 
 
 //event listener to move the user to another page once they are actually logged in, and to hide/show login and sign up links.
-const checkLogin = () => {
-  auth.onAuthStateChanged(user => {
-  if(user) {
-    console.log("checking login state")
-    if( firstLogin) {
-      window.location = 'hhinstructions.html'; //the first time the user logs in, redirect to hhinstructions.html
+// const checkLogin = () => {
+//   auth.onAuthStateChanged(user => {
+//   if(user) {
+//     console.log("checking login state")
+//     db.ref("users").child(data.user.uid). ;
+//     if(data.user.newUser === true) {
+//       window.location = 'hhinstructions.html'; //the first time the user logs in, redirect to hhinstructions.html
       
-    }
-    window.location = 'userProfile.html'; //After successful login, user will be redirected to userProfile.html; This will eventually need to be their specific login page.
-
-  } else {
+//     } else {
+//     window.location = 'userProfile.html'; //After successful login, user will be redirected to userProfile.html; This will eventually need to be their specific login page.
+//     }
+//   } else {
     
-  }
-});
+//   }
+// });
 
-}
+// }
 
 // // admin page functionality
 
