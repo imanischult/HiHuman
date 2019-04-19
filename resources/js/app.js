@@ -29,6 +29,7 @@ var $closeCreate = $("#closeCreate");
 
 // When the user clicks the button, open the modal 
 
+
 $newAcctBtn.on('click', function () {
   $createProfModal.css('display', 'block')
   console.log(this)
@@ -37,6 +38,7 @@ $newAcctBtn.on('click', function () {
 // When the user clicks the "create account" button, create the account
 $("#newAccount").click(function () {
   signUp(event);
+
 });
 
 // When the user clicks "next" button, open "choose mask page"
@@ -50,8 +52,10 @@ $('#userAccount').click(function () {
 });
 
 // When the user clicks on <span> (x), close the modal
-$closeCreate.on('click', function () {
-  $createProfModal.css('display', 'none')
+
+$closeCreate.on('click', function() {
+  $createProfModal.css('display','none')
+
 });
 
 
@@ -76,6 +80,7 @@ $closeSignIn.on('click', function () {
   $signInModal.css('display', 'none')
   console.log(this)
 });
+
 
 
 
