@@ -173,7 +173,7 @@ const signUp = (event) => {
         let errorMessage = error.message;
         console.log(errorCode, errorMessage);
         if (errorCode == 'auth/email-already-in-use') {
-          $("#email").append("<p class='errorText'>this email already exists in the system</p>");
+          // $("#email").append("<p class='errorText'>this email already exists in the system</p>");
         }
       })
       // } else { // if not matching, show an error. 
@@ -181,7 +181,7 @@ const signUp = (event) => {
       // }
       return "user created";
     
-};
+      };
 
 
 
