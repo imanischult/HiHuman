@@ -41,10 +41,15 @@ $("#newAccount").click(function () {
 
 });
 
-// When the user clicks "next" button, open "choose mask page"
+// When the user clicks "next" button, open "choose mask"
 $('#nextBut').click(function () {
   window.location.href = 'chooseAMask.html';
 });
+
+// //When the user clicks "next" button, open "choose traits"
+// $('#userAccount').click(function () {
+//   // window.location.href = '';
+// });
 
 //When the user clicks "sign in" button, open "user profile"
 $('#userAccount').click(function () {
