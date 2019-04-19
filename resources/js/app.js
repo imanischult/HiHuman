@@ -111,6 +111,7 @@ const checkLogin = () => {
     if (user) {
       console.log("logged in")
       uid = auth.currentUser.uid;
+      console.log(uid);
 
 
     } else {
