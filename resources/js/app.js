@@ -83,9 +83,7 @@ $closeSignIn.on('click', function () {
 
 
 
-// //new account functionality
-
-
+// ** ACCOUNT LOGIC **
 
 
 //sign in functionality. Firebase docs provides this. 
@@ -100,9 +98,24 @@ const signIn = (event) => {
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorCode, errorMessage);
-    // ...
   });
 }
+
+
+//event listener to check for log in and hide Login/Sign Up buttons
+const checkLogin = () => {
+  auth.onAuthStateChanged(user => {
+  if(user) {
+    console.log("checking login state")
+    
+      
+  } else {
+    
+  }
+});
+
+}
+
 
 //create a new account when the newAccount button is clicked. 
 const signUp = (event) => {
@@ -113,7 +126,7 @@ const signUp = (event) => {
   let pass = $("#userPassword").val().trim();
   let passVal = $("#re-type_password").val().trim();
   console.log(email, username, pass, passVal);
-  //verify that the passwords match
+  //verify that the passwords match -- this is disabled for the moment because it's throwing a 400 instead.
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
   auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
@@ -136,6 +149,7 @@ const signUp = (event) => {
       console.log(`Error creating database entry for user! --> ${error}`);
     }
   }).then(function() { 
+    checkLogin();
     window.location.replace('hhinstructions.html');
   }).catch(function (error) {
     // Handle Errors here.
@@ -150,73 +164,60 @@ const signUp = (event) => {
   // } else { // if not matching, show an error. 
   //   $("#password").append("<p class='errorText'>passwords do not match</p>")
   // }
-  $("input").val(" ");
   return "user created";
 
 };
 
 
-//event listener to move the user to another page once they are actually logged in, and to hide/show login and sign up links.
-const checkLogin = () => {
-  auth.onAuthStateChanged(user => {
-  if(user) {
-    console.log("checking login state")
-    
-      
-  } else {
-    
-  }
-});
-
-}
-
-// // admin page functionality
 
 
-// //this function takes a userid from the database and gives them the admin role
-// // const setAdmin = (uid) => {
-// //   db.ref().on("child_added", function(childSnapshot) {
-// //     role: admin
-// //   })
-// //     .then(function (UserInfo) {
-// //       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
-// //       console.log('Successfully updated user', UserInfo.toJSON());
-// //     })
-// //     .catch(function (error) {
-// //       console.log('Error updating user:', error);
-// //     });
-// // }
+// admin page functionality
 
-// //on clicking the make admin button on the admin page
-// // $("#make-admin").on("click", function (event) {
-// //   event.preventDefault();
-// //   let usrEmail = $("#adminEmail").val().trim();
-// //   //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
-// //   db.ref(`users/email`).on()
-// //   firebase.user
-// //     .then(function (UserInfo) {
-// //       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
-// //       console.log('Successfully fetched user data:', UserInfo.toJSON());
-// //       let uid = UserInfo.uid;
-// //       setAdmin(uid);
-// //     })
-// //     .catch(function (error) {
-// //       console.log('Error fetching user data:', error);
-// //     });
-// // })
-// // function toggleRegisterState() {
-// //     $('.toggle span').toggleClass('toggled');
 
-// //     if (is_register) {
-// //       $('form h3').text('Sign Up');
-// //       $('form #confirm').show();
-// //     } else {
-// //       $('form h3').text('Log In');
-// //       $('form #confirm').hide();
-// //     }
+//this function takes a userid from the database and gives them the admin role
+// const setAdmin = (uid) => {
+//   db.ref().on("child_added", function(childSnapshot) {
+//     role: admin
+//   })
+//     .then(function (UserInfo) {
+//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
+//       console.log('Successfully updated user', UserInfo.toJSON());
+//     })
+//     .catch(function (error) {
+//       console.log('Error updating user:', error);
+//     });
+// }
 
-// //     is_register = !is_register;
-// //   }
+//on clicking the make admin button on the admin page
+// $("#make-admin").on("click", function (event) {
+//   event.preventDefault();
+//   let usrEmail = $("#adminEmail").val().trim();
+//   //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
+//   db.ref(`users/email`).on()
+//   firebase.user
+//     .then(function (UserInfo) {
+//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
+//       console.log('Successfully fetched user data:', UserInfo.toJSON());
+//       let uid = UserInfo.uid;
+//       setAdmin(uid);
+//     })
+//     .catch(function (error) {
+//       console.log('Error fetching user data:', error);
+//     });
+// })
+// function toggleRegisterState() {
+//     $('.toggle span').toggleClass('toggled');
+
+//     if (is_register) {
+//       $('form h3').text('Sign Up');
+//       $('form #confirm').show();
+//     } else {
+//       $('form h3').text('Log In');
+//       $('form #confirm').hide();
+//     }
+
+//     is_register = !is_register;
+//   }
 
 // function checkAuthState() {
 //     auth.onAuthStateChanged(function (user) {
