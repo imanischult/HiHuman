@@ -166,7 +166,7 @@ const signUp = (event) => {
         }
       }).then(function () {
         checkLogin();
-        window.location.replace('hhinstructions.html');
+        window.location.replace('chooseAMask.html');
       }).catch(function (error) {
         // Handle Errors here.
         let errorCode = error.code;
