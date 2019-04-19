@@ -145,6 +145,7 @@ const signUp = (event) => {
     //   $("#password").append("<p class='errorText'>passwords do not match</p>")
     // }
     $("input").val(" ");
+
     
 };
 
