@@ -51,7 +51,7 @@ $('#nextBut').click(function () {
 
 //When the user clicks "sign in" button, open "user profile"
 $('#userAccount').click(function () {
-  // window.location.href = 'userProfile.html';
+  signIn(event);
 });
 
 // When the user clicks on <span> (x), close the modal
@@ -96,17 +96,14 @@ const signIn = (event) => {
   let usrEmail = $("#userSignIn").val().trim();
   let usrPassword = $("#user_password").val().trim();
   event.preventDefault();
-  // auth.setPersistence(auth.Auth.Persistence.SESSION)
-  //   .then(function () {
-      firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
-        checkLogin()
-      ).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-    // });
+  firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
+    checkLogin()
+  ).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  });
 }
 
 
@@ -121,8 +118,14 @@ const checkLogin = () => {
 
     } else {
       //if the user isn't logged in, kick them to the login page. 
-      window.location.replace('index.html');
-      console.log("not authed!");
+      if (window.location.assign.pathname = "index.html") {
+        
+        console.log("on index and not authed!", window.location);
+      } else {
+        console.log("not authed!", window.location);
+        window.location.replace("index.html");
+        
+      }
 
     }
   });
@@ -142,8 +145,6 @@ const signUp = (event) => {
   //verify that the passwords match -- this is disabled for the moment because it's throwing a 400 instead.
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
-  auth().setPersistence(auth.Auth.Persistence.SESSION)
-    .then(function () {
       auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
         try {
           db.ref('users').child(data.user.uid).set({
@@ -179,7 +180,7 @@ const signUp = (event) => {
       //   $("#password").append("<p class='errorText'>passwords do not match</p>")
       // }
       return "user created";
-    })
+    
 };
 
 
@@ -262,8 +263,8 @@ function logUserOut() {
 }
 
 function init() {
-  // $('#newAccount').on('click', signUp);
-  $('#userAccount').on('click', signIn);
+  $('#topCreateLink').on('click', signUp);
+  $('#topSignInLink').on('click', signIn);
   $('#logout').on('click', logUserOut);
   checkLogin();
 }
