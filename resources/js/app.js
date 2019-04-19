@@ -157,23 +157,18 @@ const signUp = (event) => {
 
 
 //event listener to move the user to another page once they are actually logged in, and to hide/show login and sign up links.
-// const checkLogin = () => {
-//   auth.onAuthStateChanged(user => {
-//   if(user) {
-//     console.log("checking login state")
-//     db.ref("users").child(data.user.uid). ;
-//     if(data.user.newUser === true) {
-//       window.location = 'hhinstructions.html'; //the first time the user logs in, redirect to hhinstructions.html
-      
-//     } else {
-//     window.location = 'userProfile.html'; //After successful login, user will be redirected to userProfile.html; This will eventually need to be their specific login page.
-//     }
-//   } else {
+const checkLogin = () => {
+  auth.onAuthStateChanged(user => {
+  if(user) {
+    console.log("checking login state")
     
-//   }
-// });
+      
+  } else {
+    
+  }
+});
 
-// }
+}
 
 // // admin page functionality
 
