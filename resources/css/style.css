@@ -109,18 +109,6 @@ a.cwaves-effect.waves-light.btn {
     text-align: center;
     font-size: large;
 }
-/* footer  */
-.footer-copyright {
-     
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-      
-    
-    
-    
-      
-}
 
 /* /* below .incard is for instructions/about us teal box */
 
@@ -229,13 +217,7 @@ a.nwaves-effect.waves-light.btn {
     top: -200px;
 }
 
-#signIn {
 
-} 
-
-#newAccount {
-    
-}
 
 /* button BN for choose reason page */
 .bnBut {
