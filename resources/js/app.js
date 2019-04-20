@@ -40,9 +40,9 @@ $("#newAccount").click(function () {
 });
 
 // When the user clicks "next" button, open "choose mask"
-$('#nextBut').click(function () {
-  window.location.href = 'chooseAMask.html';
-});
+// $('#nextBut').click(function () {
+//   window.location.href = 'chooseAMask.html';
+// });
 
 // //When the user clicks "next" button, open "choose traits"
 // $('#userAccount').click(function () {
@@ -97,13 +97,15 @@ const signIn = (event) => {
   let usrPassword = $("#user_password").val().trim();
   event.preventDefault();
   firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
-    checkLogin()
+    checkLogin(),
+    window.location.replace('userProfile.html')
   ).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorCode, errorMessage);
   });
+
 }
 
 
@@ -111,7 +113,7 @@ const signIn = (event) => {
 const checkLogin = () => {
   auth.onAuthStateChanged(user => {
     if (user) {
-      console.log("logged in")
+      console.log("logged in", window.location)
       uid = auth.currentUser.uid;
       console.log(uid);
 
@@ -119,12 +121,12 @@ const checkLogin = () => {
     } else {
       //if the user isn't logged in, kick them to the login page. 
       if (window.location.assign.pathname = "index.html") {
-        
+
         console.log("on index and not authed!", window.location);
       } else {
         console.log("not authed!", window.location);
         window.location.replace("index.html");
-        
+
       }
 
     }
@@ -145,47 +147,46 @@ const signUp = (event) => {
   //verify that the passwords match -- this is disabled for the moment because it's throwing a 400 instead.
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
-      auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
-        try {
-          db.ref('users').child(data.user.uid).set({
-            email: data.user.email,
-            key: data.user.uid,
-            username: username,
-            isAdmin: false,
-            mask: "",
-            icons: [],
-            reasons: [],
-            testsTaken: [],
-            noTestsTaken: 0
-          })
-          console.log("user created");
-
-        } catch (error) {
-          console.log(`Error creating database entry for user! --> ${error}`);
-        }
-      }).then(function () {
-        checkLogin();
-        window.location.replace('chooseAMask.html');
-      }).catch(function (error) {
-        // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        if (errorCode == 'auth/email-already-in-use') {
-          // $("#email").append("<p class='errorText'>this email already exists in the system</p>");
-        }
+  auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
+    try {
+      db.ref('users').child(data.user.uid).set({
+        email: data.user.email,
+        key: data.user.uid,
+        username: username,
+        isAdmin: false,
+        mask: "",
+        icons: [],
+        reasons: [],
+        testsTaken: [],
+        noTestsTaken: 0
       })
-      // } else { // if not matching, show an error. 
-      //   $("#password").append("<p class='errorText'>passwords do not match</p>")
-      // }
-      return "user created";
-    
-      };
+      console.log("user created");
+
+    } catch (error) {
+      console.log(`Error creating database entry for user! --> ${error}`);
+    }
+  }).then(function () {
+    checkLogin();
+    window.location.replace('chooseAMask.html');
+  }).catch(function (error) {
+    // Handle Errors here.
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    if (errorCode == 'auth/email-already-in-use') {
+      //show a div with an error message here about the account already existing.
+    } else {
+      //show a div with a generic error message here
+    }
+  })
+  return "user created";
+
+};
 
 
 //CHOOSE A MASK Functionality // 
 
-const chooseMask = function() {
+const chooseMask = function () {
   console.log($(this));
   let myMask = $(this).attr("data-mask");
   let maskImg = $(this).attr("src");
@@ -203,14 +204,59 @@ const chooseMask = function() {
 
 // CHOOSE ICON PAGE FUNCTIONALITY 
 
-const chooseIcons = () => {
-  let 
+let traitNo = 0;
+
+// function arrayify(obj) {
+//   return [].slice.call(null, obj);
+// }
+
+const selectMulti = function () {
+  let trait = $(this);
+
+  if (!trait.is(".selected")) {
+    trait.addClass("selected");
+    trait.attr("data-val", traitNo);
+    if (traitNo < 3) {
+      traitNo++;
+      console.log(traitNo);
+    } else {
+      let drop = $(`[data-val=0]`);
+      console.log(drop);
+      drop.removeClass("selected");
+      trait.attr("data-val", 0).addClass("selected");
+      // so, I am aware this is stupid, and the right way to do it is to figure out the lowest one, drop that, and swap the data values so that the most recently added is the highest and the oldest one is the lowest, or something of that kind. But the main thing is limiting the selected items to 3, and that's good, so I'll not spend time on making this neater; I'll just note that's something to fix in future.
+      console.log(traitNo);
+    }
+  } else {
+    trait.removeClass('selected');
+    trait.attr("data-val", "");
+    traitNo--;
+  }
+}
+
+
+const chooseIcons = function () {
+  let icon1 = $(`[data-val=0]`).attr("src");
+  let icon2 = $(`[data-val=1]`).attr("src");
+  let icon3 = $(`[data-val=2]`).attr("src");
+  console.log(icon1, icon2, icon3);
+  try {
+    db.ref(`users/${uid}/icons`).update({
+      icon1: icon1, 
+      icon2: icon2,
+      icon3: icon3 
+    })
+    console.log("icons saved")
+  } catch (error) {
+    console.log("there was a problem saving the icons")
+  }
+
 }
 
 //SELECT REASONS PAGE FUNCTIONALITY
 
 const chooseReasons = () => {
-  let 
+  let
 }
 
 // CONFIRM PROFILE FUNCTIONALITY 
@@ -298,6 +344,7 @@ function init() {
   $('#topSignInLink').on('click', signIn);
   $('#logout').on('click', logUserOut);
   $('.mask').on('click', chooseMask);
+  $('.icon').on('click', selectMulti);
   $('#traitBtn').on('click', chooseIcons);
   $('#reasonBtn').on('click', chooseReasons);
   checkLogin();
