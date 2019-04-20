@@ -217,6 +217,10 @@ a.nwaves-effect.waves-light.btn {
     top: -200px;
 }
 
+#wrongPassword {
+    color: red;
+    display: none;
+}
 
 
 /* button BN for choose reason page */
