@@ -371,7 +371,7 @@ function init() {
 }
 
 // Start The App
-// init();
+init();
 
 
 
