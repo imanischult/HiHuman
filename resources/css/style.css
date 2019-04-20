@@ -30,6 +30,17 @@ span.inwhite-text {
 #hiHumanBox.card-panel.grey {
     margin: 80px;
 }
+a#signIn.swaves-effect.waves-light.btn.noAuth{
+    position: absolute;
+    right: 800px;
+    width: 240px;
+    
+}
+a#newAccountOpenModal.cwaves-effect.waves-light.btn.noAuth{
+    position: absolute;
+    right: 380px;
+    width: 240px;
+}
 /* casual networking text inside teal box */
 .cNwhite-text {
     font-weight: 700;
@@ -40,8 +51,8 @@ span.inwhite-text {
 /* teal business networking box on reason page */
 .bNcard-panel.teal {
     position: absolute;
-    bottom: 20px;
-    left: 54px;
+    bottom: 380px;
+    left: 540px;
     margin: -1px;
     padding: 8px;
     width: 381px;
@@ -50,8 +61,8 @@ span.inwhite-text {
 /* teal casual networking box on reason page */
 .cNcard-panel.teal{
     position: absolute;
-    bottom: -70px;
-    left: 74.5px;
+    bottom: 280px;
+    left: 559px;
     margin: -1px;
     padding: 8px;
     border-radius: 2px;
@@ -60,55 +71,14 @@ span.inwhite-text {
 /* teal finding inspiration box on reason page */
 .fIcard-panel.teal {
     position: absolute;
-    bottom: -160px;
-    left: 77.5px;
+    bottom: 180px;
+    left: 561px;
     margin: -1px;
     padding: 8px;
     border-radius: 2px;
 }
-.col.s12.m5 {
-    position: absolute;
-    width: 500px;
-    right: 29pc;
-    bottom: 350px;
-}
-/* below a.cwaves and a.swaves is for sign in and create acc buttons on homepage */
-a.swaves-effect.waves-light.btn {
-    position: absolute;
-    bottom: -240px;
-    right: 200px;
-    border: none;
-    border-radius: 2px;
-    display: inline-block;
-    height: 46px;
-    line-height: 36px;
-    width: 18rem;
-    padding: 6px;
-    text-transform: uppercase;
-    vertical-align: middle;
-    -webkit-tap-highlight-color: transparent;
-    font-weight: 700;
-    text-align: center;
-    font-size: large;
-}
-a.cwaves-effect.waves-light.btn {
-    position: absolute;
-    bottom: -40px;
-    right: -180px;
-    border: none;
-    border-radius: 2px;
-    display: inline-block;
-    height: 46px;
-    line-height: 36px;
-    width: 18rem;
-    padding: 6px;
-    text-transform: uppercase;
-    vertical-align: middle;
-    -webkit-tap-highlight-color: transparent;
-    font-weight: 700;
-    text-align: center;
-    font-size: large;
-}
+
+
 
 /* below .incard is for instructions/about us teal box */
 
@@ -149,12 +119,16 @@ a.nwaves-effect.waves-light.btn {
 .cymcard-panel.teal {
     padding: 15px;
     text-align: center;
-    margin: 20px;
+    margin-left: 95px;
+    margin-top: 70px;
+    width: 800px;
     position: absolute;
+    top: 75px;
+    /* position: absolute;
     top: -255px;
     left: -175px;
     border-radius: 2px;
-    width: 800px;
+    width: 800px; */
 }
 
 /* choose your mask white text in teal box */
@@ -272,8 +246,8 @@ text-shadow:   1px 1px #000000;
     text-align: center;
     margin: 20px;
     position: absolute;
-    top: -255px;
-    left: -175.8px;
+    top: 125px;
+    left: 295px;
     width: 800px;
 }
 /* text in teal box on reasons page */
@@ -286,14 +260,14 @@ text-shadow:   1px 1px #000000;
 }
 /* ROW 1 choose masks on MASK on "CHOOSE MASK PAGE" */
 #saveForm.btTxt.submit {
-    margin-left: 90px;
+    margin-left: 170px;
     position: absolute;
     top: 288px;
     height: 130px;
 }
 /* second row of MASK on "CHOOSE MASK PAGE" */
 #tsaveForm.btTxt.submit {
-    margin-left: 90px;
+    margin-left: 170px;
     position: absolute;
     top: 498px;
     height: 130px;
@@ -327,12 +301,13 @@ div#cymNext {
 .cytcard-panel.teal {
     padding: 15px;
     text-align: center;
-    margin: 20px;
+    margin: 30px;
     position: absolute;
-    top: -255px;
-    left: -180.5px;
+    top: 115px;
+    left: 290px;
     border-radius: 2px;
     width: 800px;
+    margin-bottom: 40px;
 }
 /* white text inside teal box on "choose your traits/ personality icons page" */
 .cytwhite-text {
@@ -343,13 +318,14 @@ div#cymNext {
 }
 
 #cytsaveForm.btTxt.submit {
-    margin-left: 38px;
+    margin-left: 39.5px;
     position: absolute;
     top: 288px;
     height: 130px;
+    
 }
 #cyttsaveForm.btTxt.submit {
-    margin-left: 38px;
+    margin-left: 39.5px;
     position: absolute;
     top: 498px;
     height: 130px;
@@ -366,7 +342,7 @@ div#cytNext {
 div#reNext {
     position: absolute;
     top: 580px;
-    left: 680px;
+    left: 688px;
 }
 /* "user profile" page  */
 
@@ -376,8 +352,8 @@ div#reNext {
 /*teal box that holds New User profile choices  */
 .uscard-panel.teal {
     position: absolute;
-    top: -125px;
-    left: -5.5px;
+    top: 260px;
+    left: 471px;
     padding: 30px;
     height: 450px;
     width: 500px;
