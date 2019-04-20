@@ -165,12 +165,12 @@ const signUp = (event) => {
         testsTaken: [],
         noTestsTaken: 0
       })
-      console.log("user created");
+          console.log("user created");
 
-    } catch (error) {
-      console.log(`Error creating database entry for user! --> ${error}`);
-    }
-  }).then(function () {
+        } catch (error) {
+          console.log(`Error creating database entry for user! --> ${error}`);
+        }
+      }).then(function () {
     checkLogin();
     window.location.replace('chooseAMask.html');
   }).catch(function (error) {
@@ -184,9 +184,10 @@ const signUp = (event) => {
       //show a div with a generic error message here
     }
   })
-  return "user created";
+  console.log("user created");
+}
 
-};
+
 
 
 //CHOOSE A MASK Functionality // 
@@ -370,7 +371,7 @@ function init() {
 }
 
 // Start The App
-init();
+// init();
 
 
 
