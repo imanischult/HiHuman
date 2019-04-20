@@ -98,12 +98,17 @@ const signIn = (event) => {
   event.preventDefault();
   firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
     checkLogin(),
-    window.location.replace('userProfile.html')
+    window.location.replace(`userProfile.html?${uid}`)
   ).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    if (errorCode = "") {
+      //show a div with the error for the appropriate code here.
+    } else {
+      //show a div with a generic error message here
+      console.log(errorCode, errorMessage);
+    }
   });
 
 }
@@ -115,11 +120,11 @@ const checkLogin = () => {
     if (user) {
       console.log("logged in", window.location)
       uid = auth.currentUser.uid;
-      db.ref(`users/${uid}`).once("value", function(data) {
-        console.log(data.child());
-        usrname = data.child("username").val();
-      }).then(console.log(uid, usrname))
-      
+      // db.ref(`users/${uid}`).once("value", function(data) {
+      //   console.log(data.child("username"));
+      //   usrname = data.child("username");}).then()
+      (console.log(uid))
+
 
 
     } else {
@@ -152,7 +157,7 @@ const signUp = (event) => {
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
   auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
-    
+
     try {
       db.ref('users').child(data.user.uid).set({
         email: data.user.email,
@@ -165,12 +170,12 @@ const signUp = (event) => {
         testsTaken: [],
         noTestsTaken: 0
       })
-          console.log("user created");
+      console.log("user created");
 
-        } catch (error) {
-          console.log(`Error creating database entry for user! --> ${error}`);
-        }
-      }).then(function () {
+    } catch (error) {
+      console.log(`Error creating database entry for user! --> ${error}`);
+    }
+  }).then(function () {
     checkLogin();
     window.location.replace('chooseAMask.html');
   }).catch(function (error) {
@@ -244,14 +249,14 @@ const chooseIcons = function () {
   console.log(icon1, icon2, icon3);
   try {
     db.ref(`users/${uid}/icons`).update({
-      icon1: icon1, 
+      icon1: icon1,
       icon2: icon2,
-      icon3: icon3 
+      icon3: icon3
     }).then(
       window.location.replace('ChooseReasons.html'),
       console.log("icons saved")
     )
-    
+
   } catch (error) {
     console.log("there was a problem saving the icons")
   }
@@ -260,7 +265,7 @@ const chooseIcons = function () {
 
 //SELECT REASONS PAGE FUNCTIONALITY
 
-const chooseReasons = function() {
+const chooseReasons = function () {
   console.log($(this));
   let myReason = $(this).attr("id");
   try {
@@ -268,9 +273,9 @@ const chooseReasons = function() {
       reason: myReason
     }).then(
       console.log("reason saved"),
-      window.location.replace(`userProfile.html?${usrname}`),
+      window.location.replace(`userProfile.html?${uid}`),
     )
-    
+
   } catch (error) {
     console.log("there was a problem saving the reason")
   }
@@ -359,9 +364,9 @@ function logUserOut() {
 }
 
 function init() {
-  $('#topCreateLink').on('click', signUp);
-  $('#topSignInLink').on('click', signIn);
-  $('#logout').on('click', logUserOut);
+  $('#topCreateLink').on('click', $createProfModal.css('display', 'block'));
+  $('#topSignInLink').on('click', function () { $signInModal.css('display', 'block') });
+  $('#logOut').on('click', logUserOut);
   $('.mask').on('click', chooseMask);
   $('.icon').on('click', selectMulti);
   $('#traitBtn').on('click', chooseIcons);
