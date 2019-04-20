@@ -364,8 +364,8 @@ function logUserOut() {
 }
 
 function init() {
-  $('#topCreateLink').on('click', $createProfModal.css('display', 'block'));
-  $('#topSignInLink').on('click', function () { $signInModal.css('display', 'block') });
+  $('#topCreateLink').on('click', function() {$createProfModal.css('display', 'block')});
+  $('#topSignInLink').on('click', function() {$signInModal.css('display', 'block') });
   $('#logOut').on('click', logUserOut);
   $('.mask').on('click', chooseMask);
   $('.icon').on('click', selectMulti);
