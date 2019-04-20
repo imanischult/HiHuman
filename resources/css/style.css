@@ -220,7 +220,7 @@ a.nwaves-effect.waves-light.btn {
 
 
 /* button BN for choose reason page */
-.bnBut {
+#bnBut {
     background: #ff9900;
     background: linear-gradient(#ff9900, #ff9900);
     border: 1px solid #ff9901;
@@ -237,7 +237,7 @@ a.nwaves-effect.waves-light.btn {
     left: 5px;
 }
 /* button CN for choose reason page */
-.cnBut {
+#cnBut {
     background:    #ff0000;
 background:    linear-gradient(#ff0000, #ff0068);
 border:        1px solid #556699;
@@ -252,7 +252,7 @@ text-align:    center;
 text-shadow:   1px 1px #000000;
 }
 /* button FI for choose reason page */
-.fiBut {
+#fiBut {
     background:    #0000ff;
 background:    linear-gradient(#0000ff, #9900ff);
 border:        1px solid #556699;
@@ -413,7 +413,7 @@ div.usrow {
 
 }
 /* finding inspiration icon/button user choose on USER PROFILE PAGE */
-.userFiBut {
+#userFiBut {
     background:    #0000ff;
 background:    linear-gradient(#0000ff, #9900ff);
 border:        1px solid #556699;

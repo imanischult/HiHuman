@@ -151,7 +151,6 @@ const signUp = (event) => {
             email: data.user.email,
             key: data.user.uid,
             username: username,
-            newUser: true,
             isAdmin: false,
             mask: "",
             icons: [],
@@ -183,6 +182,29 @@ const signUp = (event) => {
     
       };
 
+
+//CHOOSE A MASK Functionality // 
+
+const chooseMask = () => {
+  var myMask;
+  
+
+}
+
+
+// CHOOSE ICON PAGE FUNCTIONALITY 
+
+const chooseIcons = () => {
+  let 
+}
+
+//SELECT REASONS PAGE FUNCTIONALITY
+
+const chooseReasons = () => {
+  let 
+}
+
+// CONFIRM PROFILE FUNCTIONALITY 
 
 
 
@@ -266,6 +288,9 @@ function init() {
   $('#topCreateLink').on('click', signUp);
   $('#topSignInLink').on('click', signIn);
   $('#logout').on('click', logUserOut);
+  $('#maskBtn').on('click', chooseMask);
+  $('#traitBtn').on('click', chooseIcons);
+  $('#reasonBtn').on('click', chooseReasons);
   checkLogin();
 }
 
