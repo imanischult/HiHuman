@@ -163,16 +163,21 @@ const signUp = (event) => {
     let errorMessage = error.message;
     if (errorCode == 'auth/email-already-in-use') {
       $("#email").append("<p class='errorText'>this email already exists in the system</p>");
-    } else {
-      $("<form>").append(errorMessage);
-    }
+    } 
+    // else {
+    //   $("<form>").append(errorMessage);
+    // }
   })
+
+    if (errorCode == 'auth/wrong-password') {
+      $('#user_password').append(`<p> class='errorPass'>Incorrect Password</p>`)
+    }
   // } else { // if not matching, show an error. 
   //   $("#password").append("<p class='errorText'>passwords do not match</p>")
   // }
   return "user created";
 
-  
+
 
 };
 
@@ -262,7 +267,7 @@ function init() {
 }
 
 // Start The App
-init();
+// init();
 
 
 
