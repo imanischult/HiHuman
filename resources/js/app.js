@@ -115,7 +115,11 @@ const checkLogin = () => {
     if (user) {
       console.log("logged in", window.location)
       uid = auth.currentUser.uid;
-      console.log(uid);
+      db.ref(`users/${uid}`).once("value", function(data) {
+        console.log(data.child());
+        usrname = data.child("username").val();
+      }).then(console.log(uid, usrname))
+      
 
 
     } else {
@@ -148,6 +152,7 @@ const signUp = (event) => {
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
   auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
+    
     try {
       db.ref('users').child(data.user.uid).set({
         email: data.user.email,
@@ -254,8 +259,20 @@ const chooseIcons = function () {
 
 //SELECT REASONS PAGE FUNCTIONALITY
 
-const chooseReasons = () => {
-  let reason
+const chooseReasons = function() {
+  console.log($(this));
+  let myReason = $(this).attr("id");
+  try {
+    db.ref(`users/${uid}`).update({
+      reason: myReason
+    }).then(
+      console.log("reason saved"),
+      window.location.replace(`userProfile.html?${usrname}`),
+    )
+    
+  } catch (error) {
+    console.log("there was a problem saving the reason")
+  }
 }
 
 // PROFILE PAGE FUNCTIONALITY 
@@ -347,8 +364,8 @@ function init() {
   $('.mask').on('click', chooseMask);
   $('.icon').on('click', selectMulti);
   $('#traitBtn').on('click', chooseIcons);
-  $('.reason').on('click'), selectMulti;
-  $('#reasonBtn').on('click', chooseReasons);
+  // $('.reason').on('click', selectMulti); -- if this becomes a multi select in future.
+  $('.reason').on('click', chooseReasons);
   checkLogin();
 }
 
