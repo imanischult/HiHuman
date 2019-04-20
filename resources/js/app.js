@@ -170,7 +170,7 @@ const signUp = (event) => {
   })
 
     if (errorCode == 'auth/wrong-password') {
-      $('#user_password').append(`<p> class='errorPass'>Incorrect Password</p>`)
+     // $('#user_password').append(`<p> class='errorPass'>Incorrect Password</p>`)
     }
   // } else { // if not matching, show an error. 
   //   $("#password").append("<p class='errorText'>passwords do not match</p>")
