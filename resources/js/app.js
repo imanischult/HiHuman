@@ -185,10 +185,19 @@ const signUp = (event) => {
 
 //CHOOSE A MASK Functionality // 
 
-const chooseMask = () => {
-  var myMask;
-  
-
+const chooseMask = function() {
+  console.log($(this));
+  let myMask = $(this).attr("data-mask");
+  let maskImg = $(this).attr("src");
+  try {
+    db.ref(`users/${uid}`).update({
+      mask: myMask,
+      maskImg: maskImg
+    })
+    console.log("mask saved")
+  } catch (error) {
+    console.log("there was a problem saving the mask")
+  }
 }
 
 
@@ -288,7 +297,7 @@ function init() {
   $('#topCreateLink').on('click', signUp);
   $('#topSignInLink').on('click', signIn);
   $('#logout').on('click', logUserOut);
-  $('#maskBtn').on('click', chooseMask);
+  $('.mask').on('click', chooseMask);
   $('#traitBtn').on('click', chooseIcons);
   $('#reasonBtn').on('click', chooseReasons);
   checkLogin();
