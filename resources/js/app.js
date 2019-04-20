@@ -176,11 +176,44 @@ const signUp = (event) => {
           $("#email").append("<p class='errorText'>this email already exists in the system</p>");
         }
       })
+<<<<<<< HEAD
       // } else { // if not matching, show an error. 
       //   $("#password").append("<p class='errorText'>passwords do not match</p>")
       // }
       return "user created";
     
+=======
+      console.log("user created");
+
+    } catch (error) {
+      console.log(`Error creating database entry for user! --> ${error}`);
+    }
+  }).then(function() { 
+    checkLogin();
+    window.location.replace('hhinstructions.html');
+  }).catch(function (error) {
+    // Handle Errors here.
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    if (errorCode == 'auth/email-already-in-use') {
+      $("#email").append("<p class='errorText'>this email already exists in the system</p>");
+    } 
+    // else {
+    //   $("<form>").append(errorMessage);
+    // }
+  })
+
+    if (errorCode == 'auth/wrong-password') {
+     // $('#user_password').append(`<p> class='errorPass'>Incorrect Password</p>`)
+    }
+  // } else { // if not matching, show an error. 
+  //   $("#password").append("<p class='errorText'>passwords do not match</p>")
+  // }
+  return "user created";
+
+
+
+>>>>>>> 51c26cd2e75a4ac0861048be7144e54eef960108
 };
 
 
@@ -270,7 +303,7 @@ function init() {
 }
 
 // Start The App
-init();
+// init();
 
 
 
