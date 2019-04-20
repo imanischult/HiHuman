@@ -203,16 +203,12 @@ const chooseMask = function () {
 
 
 // CHOOSE ICON PAGE FUNCTIONALITY 
-
+//this is set outside of the function so it doesn't get reset whenever you click.
 let traitNo = 0;
 
-// function arrayify(obj) {
-//   return [].slice.call(null, obj);
-// }
-
+//allows you to select up to 3 icons
 const selectMulti = function () {
   let trait = $(this);
-
   if (!trait.is(".selected")) {
     trait.addClass("selected");
     trait.attr("data-val", traitNo);
@@ -234,7 +230,7 @@ const selectMulti = function () {
   }
 }
 
-
+//actually saves the icons in the database when the next button is clicked, then moves to the next page. 
 const chooseIcons = function () {
   let icon1 = $(`[data-val=0]`).attr("src");
   let icon2 = $(`[data-val=1]`).attr("src");
@@ -245,8 +241,11 @@ const chooseIcons = function () {
       icon1: icon1, 
       icon2: icon2,
       icon3: icon3 
-    })
-    console.log("icons saved")
+    }).then(
+      window.location.replace('ChooseReasons.html'),
+      console.log("icons saved")
+    )
+    
   } catch (error) {
     console.log("there was a problem saving the icons")
   }
@@ -256,10 +255,12 @@ const chooseIcons = function () {
 //SELECT REASONS PAGE FUNCTIONALITY
 
 const chooseReasons = () => {
-  let
+  let reason
 }
 
-// CONFIRM PROFILE FUNCTIONALITY 
+// PROFILE PAGE FUNCTIONALITY 
+
+
 
 
 
@@ -346,6 +347,7 @@ function init() {
   $('.mask').on('click', chooseMask);
   $('.icon').on('click', selectMulti);
   $('#traitBtn').on('click', chooseIcons);
+  $('.reason').on('click'), selectMulti;
   $('#reasonBtn').on('click', chooseReasons);
   checkLogin();
 }
