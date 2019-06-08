@@ -165,9 +165,7 @@ const signUp = (event) => {
         username: username,
         isAdmin: false,
         mask: "",
-        icons: [],
-        reasons: [],
-        testsTaken: [],
+        reason: "", 
         noTestsTaken: 0
       })
       console.log("user created");
@@ -283,6 +281,26 @@ const chooseReasons = function () {
 
 // PROFILE PAGE FUNCTIONALITY 
 
+db.ref(`users/${uid}`).on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val());
+  let uname = childSnapshot.val().username;
+  let reason = childSnapshot.val().reason;
+  let maskImg = childSnapshot.val().maskImg;
+
+  $("#myMask").src(maskImg);
+  $("#myreason").text(reason);
+  $("#myName").text(uname);
+
+  let icon1 = childSnapshot.val().icons.icon1;
+  let icon2 = childSnapshot.val().icons.icon2;
+  let icon3 = childSnapshot.val().icons.icon3;
+  console.log(uname, reason, mask, maskImg, icon1, icon2, icon3);
+
+ 
+  $("#myIcon1").src(icon1);
+  $("#myIcon2").src(icon2);
+  $("#myIcon3").src(icon3);
+})
 
 
 
