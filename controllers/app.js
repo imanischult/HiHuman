@@ -29,7 +29,6 @@ var $closeCreate = $("#closeCreate");
 
 // When the user clicks the button, open the modal 
 
-
 $newAcctBtn.on('click', function () {
   $createProfModal.css('display', 'block')
   console.log(this)
@@ -38,24 +37,26 @@ $newAcctBtn.on('click', function () {
 // When the user clicks the "create account" button, create the account
 $("#newAccount").click(function () {
   signUp(event);
-
 });
 
-// When the user clicks "next" button, open "choose mask page"
-$('#nextBut').click(function () {
-  window.location.href = 'chooseAMask.html';
-});
+// When the user clicks "next" button, open "choose mask"
+// $('#nextBut').click(function () {
+//   window.location.href = 'chooseAMask.html';
+// });
+
+// //When the user clicks "next" button, open "choose traits"
+// $('#userAccount').click(function () {
+//   // window.location.href = '';
+// });
 
 //When the user clicks "sign in" button, open "user profile"
 $('#userAccount').click(function () {
-  // window.location.href = 'userProfile.html';
+  signIn(event);
 });
 
 // When the user clicks on <span> (x), close the modal
-
-$closeCreate.on('click', function() {
-  $createProfModal.css('display','none')
-
+$closeCreate.on('click', function () {
+  $createProfModal.css('display', 'none')
 });
 
 
@@ -87,7 +88,6 @@ $closeSignIn.on('click', function () {
 
 
 
-
 // ** ACCOUNT LOGIC **
 
 
@@ -97,27 +97,49 @@ const signIn = (event) => {
   let usrPassword = $("#user_password").val().trim();
   event.preventDefault();
   firebase.auth().signInWithEmailAndPassword(usrEmail, usrPassword).then(
-    checkLogin()
+    checkLogin(),
+    window.location.replace(`userProfile.html?${uid}`)
   ).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    if (errorCode = "") {
+      //show a div with the error for the appropriate code here.
+    } else {
+      //show a div with a generic error message here
+      console.log(errorCode, errorMessage);
+    }
   });
+
 }
 
 
-//event listener to check for log in and hide Login/Sign Up buttons
+//event listener to check for log in and do various things
 const checkLogin = () => {
   auth.onAuthStateChanged(user => {
-  if(user) {
-    console.log("checking login state")
-    
-      
-  } else {
-    
-  }
-});
+    if (user) {
+      console.log("logged in", window.location)
+      uid = auth.currentUser.uid;
+      // db.ref(`users/${uid}`).once("value", function(data) {
+      //   console.log(data.child("username"));
+      //   usrname = data.child("username");}).then()
+      (console.log(uid))
+
+
+
+    } else {
+      //if the user isn't logged in, kick them to the login page. 
+      if (window.location.assign.pathname = "index.html") {
+
+        console.log("on index and not authed!", window.location);
+      } else {
+        console.log("not authed!", window.location);
+        window.location.replace("index.html");
+
+      }
+
+    }
+  });
 
 }
 
@@ -135,17 +157,15 @@ const signUp = (event) => {
   // if (pass === passVal) {
   //if matching, then run the auth function with the variables above as parameters. 
   auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
+
     try {
       db.ref('users').child(data.user.uid).set({
         email: data.user.email,
         key: data.user.uid,
         username: username,
-        newUser: true,
-        role: "",
+        isAdmin: false,
         mask: "",
-        icons: [],
-        reasons: [],
-        testsTaken: [],
+        reason: "", 
         noTestsTaken: 0
       })
       console.log("user created");
@@ -153,25 +173,134 @@ const signUp = (event) => {
     } catch (error) {
       console.log(`Error creating database entry for user! --> ${error}`);
     }
-  }).then(function() { 
+  }).then(function () {
     checkLogin();
-    window.location.replace('hhinstructions.html');
+    window.location.replace('chooseAMask.html');
   }).catch(function (error) {
     // Handle Errors here.
     let errorCode = error.code;
     let errorMessage = error.message;
+    console.log(errorCode, errorMessage);
     if (errorCode == 'auth/email-already-in-use') {
-      $("#email").append("<p class='errorText'>this email already exists in the system</p>");
+      //show a div with an error message here about the account already existing.
     } else {
-      $("<form>").append(errorMessage);
+      //show a div with a generic error message here
     }
   })
-  // } else { // if not matching, show an error. 
-  //   $("#password").append("<p class='errorText'>passwords do not match</p>")
-  // }
-  return "user created";
+  console.log("user created");
+}
 
-};
+
+
+
+//CHOOSE A MASK Functionality // 
+
+const chooseMask = function () {
+  console.log($(this));
+  let myMask = $(this).attr("data-mask");
+  let maskImg = $(this).attr("src");
+  try {
+    db.ref(`users/${uid}`).update({
+      mask: myMask,
+      maskImg: maskImg
+    })
+    console.log("mask saved")
+  } catch (error) {
+    console.log("there was a problem saving the mask")
+  }
+}
+
+
+// CHOOSE ICON PAGE FUNCTIONALITY 
+//this is set outside of the function so it doesn't get reset whenever you click.
+let traitNo = 0;
+
+//allows you to select up to 3 icons
+const selectMulti = function () {
+  let trait = $(this);
+  if (!trait.is(".selected")) {
+    trait.addClass("selected");
+    trait.attr("data-val", traitNo);
+    if (traitNo < 3) {
+      traitNo++;
+      console.log(traitNo);
+    } else {
+      let drop = $(`[data-val=0]`);
+      console.log(drop);
+      drop.removeClass("selected");
+      trait.attr("data-val", 0).addClass("selected");
+      // so, I am aware this is stupid, and the right way to do it is to figure out the lowest one, drop that, and swap the data values so that the most recently added is the highest and the oldest one is the lowest, or something of that kind. But the main thing is limiting the selected items to 3, and that's good, so I'll not spend time on making this neater; I'll just note that's something to fix in future.
+      console.log(traitNo);
+    }
+  } else {
+    trait.removeClass('selected');
+    trait.attr("data-val", "");
+    traitNo--;
+  }
+}
+
+//actually saves the icons in the database when the next button is clicked, then moves to the next page. 
+const chooseIcons = function () {
+  let icon1 = $(`[data-val=0]`).attr("src");
+  let icon2 = $(`[data-val=1]`).attr("src");
+  let icon3 = $(`[data-val=2]`).attr("src");
+  console.log(icon1, icon2, icon3);
+  try {
+    db.ref(`users/${uid}/icons`).update({
+      icon1: icon1,
+      icon2: icon2,
+      icon3: icon3
+    }).then(
+      window.location.replace('ChooseReasons.html'),
+      console.log("icons saved")
+    )
+
+  } catch (error) {
+    console.log("there was a problem saving the icons")
+  }
+
+}
+
+//SELECT REASONS PAGE FUNCTIONALITY
+
+const chooseReasons = function () {
+  console.log($(this));
+  let myReason = $(this).attr("id");
+  try {
+    db.ref(`users/${uid}`).update({
+      reason: myReason
+    }).then(
+      console.log("reason saved"),
+      window.location.replace(`userProfile.html?${uid}`),
+    )
+
+  } catch (error) {
+    console.log("there was a problem saving the reason")
+  }
+}
+
+// PROFILE PAGE FUNCTIONALITY 
+
+db.ref(`users/${uid}`).on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val());
+  let uname = childSnapshot.val().username;
+  let reason = childSnapshot.val().reason;
+  let maskImg = childSnapshot.val().maskImg;
+
+  $("#myMask").src(maskImg);
+  $("#myreason").text(reason);
+  $("#myName").text(uname);
+
+  let icon1 = childSnapshot.val().icons.icon1;
+  let icon2 = childSnapshot.val().icons.icon2;
+  let icon3 = childSnapshot.val().icons.icon3;
+  console.log(uname, reason, mask, maskImg, icon1, icon2, icon3);
+
+ 
+  $("#myIcon1").src(icon1);
+  $("#myIcon2").src(icon2);
+  $("#myIcon3").src(icon3);
+})
 
 
 
@@ -181,7 +310,7 @@ const signUp = (event) => {
 
 //this function takes a userid from the database and gives them the admin role
 // const setAdmin = (uid) => {
-//   db.ref().on("child_added", function(childSnapshot) {
+//   db.ref("users").on("child_added", function(childSnapshot) {
 //     role: admin
 //   })
 //     .then(function (UserInfo) {
@@ -243,7 +372,8 @@ const signUp = (event) => {
 
 function logUserOut() {
   auth.signOut().then(function () {
-    showAuthView(false, null);
+    // showAuthView(false, null);
+    checkLogin();
   }).catch(function (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -252,10 +382,15 @@ function logUserOut() {
 }
 
 function init() {
-  // $('#newAccount').on('click', signUp);
-  $('#userAccount').on('click', signIn);
-  $('#logout').on('click', logUserOut);
-  // checkAuthState();
+  $('#topCreateLink').on('click', function() {$createProfModal.css('display', 'block')});
+  $('#topSignInLink').on('click', function() {$signInModal.css('display', 'block') });
+  $('#logOut').on('click', logUserOut);
+  $('.mask').on('click', chooseMask);
+  $('.icon').on('click', selectMulti);
+  $('#traitBtn').on('click', chooseIcons);
+  // $('.reason').on('click', selectMulti); -- if this becomes a multi select in future.
+  $('.reason').on('click', chooseReasons);
+  checkLogin();
 }
 
 // Start The App
