@@ -10,33 +10,26 @@ var User = require("../models/user.js");
 // Routes
 // =============================================================
 
+//Profile Page functions
+
 module.exports = function(app) {
 
     // Get a user profile...
     app.get("/api/users/:user_id", function(req, res) {
         //find the user by the user_id
       User.findOne({}).then(function(results) {
-          //display the result data on the profile page, in the appropriate areas. 
+          //...display the result data on the profile page, in the appropriate areas. 
         res.json(results);
       });
   
     });
+
+
+//Routes for the new modules will go here
   
-    // Add a chirp
-    app.post("/api/new", function(req, res) {
-  
-      console.log("Chirp Data:");
-      console.log(req.body);
-  
-      Chirp.create({
-        author: req.body.author,
-        body: req.body.body,
-        created_at: req.body.created_at
-      }).then(function(results) {
-        // `results` here would be the newly created chirp
-        res.end();
-      });
-  
-    });
+    
+    // app.post("/api/new", function(req, res) {
+        
+    // });
   
   };
