@@ -5,7 +5,7 @@
 // ==============================================================================
 
 var express = require("express");
-var config = require("./config");
+// var config = require("./config");
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -16,7 +16,7 @@ var config = require("./config");
 var app = express();
 
 // Sets an initial port. We"ll use this later in our listener
-var PORT = config.port || 8080;
+var PORT = 8070; // add config.port || later
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
