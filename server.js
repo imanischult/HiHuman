@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // *****************************************************************************
 // Server.js - This file is the initial starting point for the Node/Express server.
 //
@@ -5,11 +6,10 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
-var app  = express();
 
 // Sets up the Express App
 // =============================================================
-// var app = hiHuman();
+var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
