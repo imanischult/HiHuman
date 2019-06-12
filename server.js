@@ -1,45 +1,34 @@
-/* eslint-disable no-console */
-// ==============================================================================
-// DEPENDENCIES
-// Series of npm packages that we will use to give our server useful functionality
-// ==============================================================================
-
+// *****************************************************************************
+// Server.js - This file is the initial starting point for the Node/Express server.
+//
+// ******************************************************************************
+// *** Dependencies
+// =============================================================
 var express = require("express");
-// var config = require("./config");
 
-// ==============================================================================
-// EXPRESS CONFIGURATION
-// This sets up the basic properties for our express server
-// ==============================================================================
+// Sets up the Express App
+// =============================================================
+var app = hiHuman();
+var PORT = process.env.PORT || 8080;
 
-// Tells node that we are creating an "express" server
-var app = express();
-
-// Sets an initial port. We"ll use this later in our listener
-var PORT = 8070; // add config.port || later
+// Requiring our models for syncing
+var db = require("./model");
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ================================================================================
-// ROUTER
-// The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
-// ================================================================================
-
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
 // Static directory
-app.use(express.static("./public"));
+app.use(express.static("public"));
 
-// =============================================================================
-// LISTENER
-// The below code effectively "starts" our server
-// =============================================================================
+// Routes
+// =============================================================
+require("./routes/api-routes.js")(app);
 
-app.listen(PORT, function() {
-  
-  console.log("App listening on PORT: " + PORT);
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
