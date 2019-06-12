@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // *****************************************************************************
 // Server.js - This file is the initial starting point for the Node/Express server.
 //
@@ -8,7 +9,7 @@ var express = require("express");
 
 // Sets up the Express App
 // =============================================================
-var app = hiHuman();
+var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
@@ -28,6 +29,7 @@ require("./routes/api-routes.js")(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
+    //change this when it's in production
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
