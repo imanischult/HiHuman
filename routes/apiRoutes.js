@@ -15,9 +15,13 @@ var User = require("../models/user.js");
 module.exports = function (app) {
 
   // Get a user profile...
-  app.get("/api/users/:user_id", function (req, res) {
+  app.get("/api/users/:id", function (req, res) {
     //find the user by the user_id
-    User.findOne({}).then(function (results) {
+    User.findOne({
+      where: {
+        id : req.body.params
+      }
+    }).then(function (results) {
       //...display the result data on the profile page, in the appropriate areas. 
       res.json(results);
     });
@@ -27,9 +31,13 @@ module.exports = function (app) {
   app.create("/api/users", function (req, res) {
     // Create a new user
     User.create({ 
-      
-    }).then(jane => {
-      console.log("Jane's auto-generated ID:", jane.id);
+      firstName: req.body.firstName,
+      LastName: req.body.lastName,
+      username: req.body.username,
+      email: req.body.email,
+
+    }).then(user => {
+      console.log("new user ID:", user.id);
     });
   })
 
