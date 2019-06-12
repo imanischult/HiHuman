@@ -12,24 +12,32 @@ var User = require("../models/user.js");
 
 //Profile Page functions
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-    // Get a user profile...
-    app.get("/api/users/:user_id", function(req, res) {
-        //find the user by the user_id
-      User.findOne({}).then(function(results) {
-          //...display the result data on the profile page, in the appropriate areas. 
-        res.json(results);
-      });
-  
+  // Get a user profile...
+  app.get("/api/users/:user_id", function (req, res) {
+    //find the user by the user_id
+    User.findOne({}).then(function (results) {
+      //...display the result data on the profile page, in the appropriate areas. 
+      res.json(results);
     });
 
+  });
 
-//Routes for the new modules will go here
-  
-    
-    // app.post("/api/new", function(req, res) {
-        
-    // });
-  
-  };
+  app.create("/api/users", function (req, res) {
+    // Create a new user
+    User.create({ 
+      
+    }).then(jane => {
+      console.log("Jane's auto-generated ID:", jane.id);
+    });
+  })
+
+  //Routes for the new modules will go here
+
+
+  // app.post("/api/new", function(req, res) {
+
+  // });
+
+};
