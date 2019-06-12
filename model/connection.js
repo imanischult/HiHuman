@@ -3,24 +3,17 @@ var sequelize = require("../config/connection");
 const Model = Sequelize.Model;
 class User extends Model { }
 User.init({
-    firstName: {
+    groupType: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    lastName: {
+    members: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    userName: {
+    Owner: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    friendList: {
-        type: Sequelize.ARRAY,
-        allowNull: false
-    },
+    
 })
