@@ -1,4 +1,4 @@
-var sequelize = require("../config/connection");
+var Sequelize = require("../config/connection");
 
 const Model = Sequelize.Model;
 class User extends Model { }
