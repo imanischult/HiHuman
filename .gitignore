@@ -5,5 +5,8 @@ node_modules
 # environment variables
 .env
 
+<<<<<<< HEAD
 #MacOS
+=======
+>>>>>>> 717e85fc1ae56440c95d207981096b27eb9c3117
 .DS_Store
