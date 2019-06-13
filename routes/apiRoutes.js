@@ -28,18 +28,6 @@ module.exports = function (app) {
 
   });
 
-  app.create("/api/users", function (req, res) {
-    // Create a new user
-    User.create({ 
-      firstName: req.body.firstName,
-      LastName: req.body.lastName,
-      username: req.body.username,
-      email: req.body.email,
-
-    }).then(user => {
-      console.log("new user ID:", user.id);
-    });
-  })
 
   //Routes for the new modules will go here
 
