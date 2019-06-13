@@ -15,7 +15,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-// var db = require("./model");
+var db = require("./model");
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -48,6 +48,7 @@ res.send('Secured Resource');
 
 // Routes
 // =============================================================
+<<<<<<< HEAD
 // require("./routes")(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
@@ -56,4 +57,13 @@ res.send('Secured Resource');
 // });
 app.listen(PORT, function() {
       console.log("App listening on PORT " + PORT);
+=======
+require("./routes/api-routes.js")(app);
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function () {
+    app.listen(PORT, function () {
+        console.log("App listening on PORT " + PORT);
+>>>>>>> 044e403ee0a8613137e9202da0fbb3c785fda5f8
     });
+});
