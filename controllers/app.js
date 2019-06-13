@@ -1,18 +1,18 @@
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyDY0ap1bIDwwvSRsvusGOtH1ow7F6AqPyU",
-  authDomain: "hiawesomehumans.firebaseapp.com",
-  databaseURL: "https://hiawesomehumans.firebaseio.com",
-  projectId: "hiawesomehumans",
-  messagingSenderId: "501987551176",
-  name: "Hi Humans!"
-};
-firebase.initializeApp(config);
+// var config = {
+//   apiKey: "AIzaSyDY0ap1bIDwwvSRsvusGOtH1ow7F6AqPyU",
+//   authDomain: "hiawesomehumans.firebaseapp.com",
+//   databaseURL: "https://hiawesomehumans.firebaseio.com",
+//   projectId: "hiawesomehumans",
+//   messagingSenderId: "501987551176",
+//   name: "Hi Humans!"
+// };
+// firebase.initializeApp(config);
 
-const auth = firebase.auth();
-const db = firebase.database();
-var uid;
+// const auth = firebase.auth();
+// const db = firebase.database();
+// var uid;
 
 
 
@@ -39,15 +39,6 @@ $("#newAccount").click(function () {
   signUp(event);
 });
 
-// When the user clicks "next" button, open "choose mask"
-// $('#nextBut').click(function () {
-//   window.location.href = 'chooseAMask.html';
-// });
-
-// //When the user clicks "next" button, open "choose traits"
-// $('#userAccount').click(function () {
-//   // window.location.href = '';
-// });
 
 //When the user clicks "sign in" button, open "user profile"
 $('#userAccount').click(function () {
@@ -395,6 +386,3 @@ function init() {
 
 // Start The App
 init();
-
-
-
