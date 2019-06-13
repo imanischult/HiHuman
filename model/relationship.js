@@ -1,22 +1,17 @@
 module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-        firstName: {
+    var Relationship = sequelize.define("Relationship", {
+        relationshipType: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastName: {
+        relatingUserId: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        userName: {
+        relatedUserId: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
     });
 
     // Post.associate = function (models) {
@@ -27,8 +22,7 @@ module.exports = function (sequelize, DataTypes) {
     //             allowNull: false
     //         }
     //     });
-    // };
+    //};
 
-    return User;
+    return Relationship;
 };
-
