@@ -5,4 +5,3 @@ node_modules
 # environment variables
 .env
 
-.DS_Store
