@@ -28,15 +28,29 @@ module.exports = function(app) {
   });
 
   app.post("/api/users", function(req, res) {
+    const { email, firstName, lastName, userName } = req.body;
+    if (!userName || !email || !firstName || !lastName) {
+      res.status(422);
+      res.json({
+        message: "Please check inputs and resubmit."
+      });
+      return;
+    }
     // Create a new user
-    User.create({
-      firstName: req.body.firstName,
-      LastName: req.body.lastName,
-      username: req.body.username,
-      email: req.body.email
-    }).then(user => {
-      console.log("new user ID:", user.id);
-    });
+    db.User.create({
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      email: email
+    })
+      .then(user => {
+        res.status(201);
+        res.json(user);
+      })
+      .catch(error => {
+        res.status(400);
+        res.json(error);
+      });
   });
 
   //Routes for the new modules will go here
