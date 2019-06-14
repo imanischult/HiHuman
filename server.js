@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable no-console */
 // *****************************************************************************
 // Server.js - This file is the initial starting point for the Node/Express server.
@@ -77,14 +78,14 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 
+=======
+var app = require("./app");
+var db = require("./model");
+>>>>>>> a43fe6fcc83ada7fb70ae5977671872ee50896d5
 
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+var PORT = process.env.PORT || 8080;
 
-// Static directory
-app.use(express.static("public"));
-
+<<<<<<< HEAD
 
 // Routes
 // =============================================================
@@ -98,6 +99,11 @@ app.use(userInViews());
 // =============================================================
 db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
+=======
+db.sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, function() {
+    //eslint-disable-line
+>>>>>>> a43fe6fcc83ada7fb70ae5977671872ee50896d5
     console.log("App listening on PORT " + PORT);
   });
 });

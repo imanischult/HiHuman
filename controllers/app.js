@@ -1,6 +1,5 @@
 
 
-
 // // ++++ Create New Profile Modal Logic ++++ //
 // //we may not need this with the 0Auth modal
 
@@ -103,21 +102,18 @@
 //       (console.log(uid))
 
 
-
-//     } else {
-//       //if the user isn't logged in, kick them to the login page. 
-//       if (window.location.assign.pathname = "index.html") {
-
-//         console.log("on index and not authed!", window.location);
-//       } else {
-//         console.log("not authed!", window.location);
-//         window.location.replace("index.html");
-
-//       }
-
-//     }
-//   });
-
+//this function takes a userid from the database and gives them the admin role
+// const setAdmin = (uid) => {
+//   db.ref("users").on("child_added", function(childSnapshot) {
+//     role: admin
+//   })
+//     .then(function (UserInfo) {
+//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
+//       console.log('Successfully updated user', UserInfo.toJSON());
+//     })
+//     .catch(function (error) {
+//       console.log('Error updating user:', error);
+//     });
 // }
 
 

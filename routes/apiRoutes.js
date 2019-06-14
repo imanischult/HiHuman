@@ -22,19 +22,43 @@ var secured = require("../controllers/secured");
     //find the user by the user_id
     db.User.findOne({
       where: {
-        id : req.body.params
+        id: req.params.id
       }
-    }).then(function (results) {
-      //...display the result data on the profile page, in the appropriate areas. 
+    }).then(function(results) {
+      //...display the result data on the profile page, in the appropriate areas.
       res.json(results);
     });
-
   });
 
-module.exports = router;
-  //Routes for the new modules will go here
 
+  app.post("/api/users", function(req, res) {
+    const { email, firstName, lastName, userName } = req.body;
+    if (!userName || !email || !firstName || !lastName) {
+      res.status(422);
+      res.json({
+        message: "Please check inputs and resubmit."
+      });
+      return;
+    }
+    // Create a new user
 
-  // app.post("/api/new", function(req, res) {
+    //Will need to add logic to call this method after authentication, if there is no matching user in our database.
+    db.User.create({
+      firstName: firstName,
+      lastName: lastName,
+      userName: userName,
+      email: email
+    })
+      .then(user => {
+        res.status(201);
+        res.json(user);
+      })
+      .catch(error => {
+        res.status(400);
+        res.json(error);
+      });
+  });
 
-  // });
+   //Routes for the new modules will go here
+
+  module.exports = router;

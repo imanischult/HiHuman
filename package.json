@@ -4,8 +4,9 @@
   "description": "Friend scheduling application",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha --recursive --exit"
   },
   "repository": {
     "type": "git",
@@ -21,20 +22,22 @@
     "bcrypt": "^3.0.6",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "express-jwt": "^5.3.1",
     "express-session": "^1.16.2",
     "jsonwebtoken": "^8.5.1",
-    "jwks-rsa": "^1.5.1",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",
     "path": "^0.12.7",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "sequelize": "^5.8.9"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0"
   }
 }
