@@ -30,15 +30,21 @@ span.inwhite-text {
 #hiHumanBox.card-panel.grey {
     margin: 80px;
 }
+.homeRow {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    
+}
 a#signIn.swaves-effect.waves-light.btn.noAuth{
     position: absolute;
-    right: 800px;
+    /* right: 800px; */
     width: 240px;
     
 }
 a#newAccountOpenModal.cwaves-effect.waves-light.btn.noAuth{
     position: absolute;
-    right: 380px;
+    /* right: 380px; */
     width: 240px;
 }
 /* casual networking text inside teal box */
@@ -119,11 +125,7 @@ a.nwaves-effect.waves-light.btn {
 .cymcard-panel.teal {
     padding: 15px;
     text-align: center;
-    margin-left: 95px;
-    margin-top: 70px;
-    width: 800px;
-    position: absolute;
-    top: 75px;
+    margin: 30px;
     /* position: absolute;
     top: -255px;
     left: -175px;
@@ -191,10 +193,14 @@ a.nwaves-effect.waves-light.btn {
     top: -200px;
 }
 
+#wrongPassword {
+    color: red;
+    display: none;
+}
 
 
 /* button BN for choose reason page */
-.bnBut {
+#bnBut {
     background: #ff9900;
     background: linear-gradient(#ff9900, #ff9900);
     border: 1px solid #ff9901;
@@ -211,7 +217,7 @@ a.nwaves-effect.waves-light.btn {
     left: 5px;
 }
 /* button CN for choose reason page */
-.cnBut {
+#cnBut {
     background:    #ff0000;
 background:    linear-gradient(#ff0000, #ff0068);
 border:        1px solid #556699;
@@ -226,7 +232,7 @@ text-align:    center;
 text-shadow:   1px 1px #000000;
 }
 /* button FI for choose reason page */
-.fiBut {
+#fiBut {
     background:    #0000ff;
 background:    linear-gradient(#0000ff, #9900ff);
 border:        1px solid #556699;
@@ -297,16 +303,17 @@ div#cymNext {
     top: 288px;
     height: 120px;
 }
+
+.selected {
+    border: 1px dashed teal;
+}
+
 /* teal box on top of "choose your traits/ personality icons page" */
 .cytcard-panel.teal {
     padding: 15px;
     text-align: center;
     margin: 30px;
-    position: absolute;
-    top: 115px;
-    left: 290px;
     border-radius: 2px;
-    width: 800px;
     margin-bottom: 40px;
 }
 /* white text inside teal box on "choose your traits/ personality icons page" */
@@ -346,9 +353,9 @@ div#reNext {
 }
 /* "user profile" page  */
 
-#userBox {
+/* #userBox {
 
-}
+} */
 /*teal box that holds New User profile choices  */
 .uscard-panel.teal {
     position: absolute;
@@ -389,7 +396,7 @@ div.usrow {
 
 }
 /* finding inspiration icon/button user choose on USER PROFILE PAGE */
-.userFiBut {
+#userFiBut {
     background:    #0000ff;
 background:    linear-gradient(#0000ff, #9900ff);
 border:        1px solid #556699;
