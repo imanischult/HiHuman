@@ -1,0 +1,32 @@
+{
+  "name": "hihumans",
+  "version": "1.0.0",
+  "description": "Friend scheduling application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Corbineau/ItsAmazing.git"
+  },
+  "author": "HNICs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Corbineau/ItsAmazing/issues"
+  },
+  "homepage": "https://github.com/Corbineau/ItsAmazing#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^1.6.5",
+    "path": "^0.12.7",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "sequelize": "^5.8.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.13.0"
+  }
+}

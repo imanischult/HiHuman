@@ -1,0 +1,7 @@
+# node stuff
+node_modules
+
+.DS_Store
+# environment variables
+.env
+
