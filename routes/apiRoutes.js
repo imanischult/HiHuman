@@ -3,49 +3,45 @@
 // Dependencies
 // =============================================================
 
-// require the various data we're pulling here, per Sequelize. Example: 
-var User = require("../models/user.js");
-
+// require the various data we're pulling here, per Sequelize. Example:
+// var User = require("../model/user.js");
+var db = require("../model/");
 
 // Routes
 // =============================================================
 
 //Profile Page functions
 
-module.exports = function (app) {
-
+module.exports = function(app) {
   // Get a user profile...
-  app.get("/api/users/:id", function (req, res) {
+  app.get("/api/users/:id", function(req, res) {
     //find the user by the user_id
-    User.findOne({
+
+    db.User.findOne({
       where: {
-        id : req.body.params
+        id: req.params.id
       }
-    }).then(function (results) {
-      //...display the result data on the profile page, in the appropriate areas. 
+    }).then(function(results) {
+      //...display the result data on the profile page, in the appropriate areas.
       res.json(results);
     });
-
   });
 
-  app.create("/api/users", function (req, res) {
+  app.post("/api/users", function(req, res) {
     // Create a new user
-    User.create({ 
+    User.create({
       firstName: req.body.firstName,
       LastName: req.body.lastName,
       username: req.body.username,
-      email: req.body.email,
-
+      email: req.body.email
     }).then(user => {
       console.log("new user ID:", user.id);
     });
-  })
+  });
 
   //Routes for the new modules will go here
-
 
   // app.post("/api/new", function(req, res) {
 
   // });
-
 };
