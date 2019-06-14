@@ -15,8 +15,9 @@ var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 dotenv.config();
+var db = require("./models");
+var app = express();
 
-// var app = express();
 const crypto = require("crypto");
 const id = crypto.randomBytes(16).toString("hex");
 
@@ -71,11 +72,11 @@ passport.deserializeUser(function (user, done) {
 
 // Sets up the Express App
 // =============================================================
-var app = express();
+
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-var db = require("./models");
+
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -87,9 +88,9 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-app.use(userRouter);
-app.use(apiRouter);
-app.use(authRouter);
+app.use("/", userRouter);
+app.use("/api", apiRouter);
+app.use("/", authRouter);
 app.use(userInViews());
 // app.use(auth);
 

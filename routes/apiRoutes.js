@@ -14,10 +14,11 @@ var secured = require("../controllers/secured");
 
 //Profile Page functions
 
+//when a new account is created, we need a post route to the db to add all the infoz.
 
 
   // Get a user profile...
-  router.get("/api/users/:id", secured(), function (req, res, next) {
+  router.get("/users/:id", secured(), function (req, res, next) {
     //find the user by the user_id
     db.User.findOne({
       where: {
@@ -37,20 +38,3 @@ module.exports = router;
   // app.post("/api/new", function(req, res) {
 
   // });
-
-
-
-// var express = require('express');
-
-// var router = express.Router();
-
-// /* GET user profile. */
-// router.get('/user', secured(), function (req, res, next) {
-//   const { _raw, _json, ...userProfile } = req.user;
-//   res.render('user', {
-//     userProfile: JSON.stringify(userProfile, null, 2),
-//     title: 'Profile page'
-//   });
-// });
-
-// module.exports = router;
