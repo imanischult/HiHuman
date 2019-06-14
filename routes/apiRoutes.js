@@ -4,7 +4,9 @@
 // =============================================================
 
 // require the various data we're pulling here, per Sequelize. Example: 
-var User = require("../models/user.js");
+var db = require("../models");
+var router = require("express").Router();
+var secured = require("../controllers/secured");
 
 
 // Routes
@@ -12,12 +14,12 @@ var User = require("../models/user.js");
 
 //Profile Page functions
 
-module.exports = function (app) {
+
 
   // Get a user profile...
-  app.get("/api/users/:id", function (req, res) {
+  router.get("/api/users/:id", secured(), function (req, res, next) {
     //find the user by the user_id
-    User.findOne({
+    db.User.findOne({
       where: {
         id : req.body.params
       }
@@ -28,7 +30,7 @@ module.exports = function (app) {
 
   });
 
-
+module.exports = router;
   //Routes for the new modules will go here
 
 
@@ -36,4 +38,19 @@ module.exports = function (app) {
 
   // });
 
-};
+
+
+// var express = require('express');
+
+// var router = express.Router();
+
+// /* GET user profile. */
+// router.get('/user', secured(), function (req, res, next) {
+//   const { _raw, _json, ...userProfile } = req.user;
+//   res.render('user', {
+//     userProfile: JSON.stringify(userProfile, null, 2),
+//     title: 'Profile page'
+//   });
+// });
+
+// module.exports = router;

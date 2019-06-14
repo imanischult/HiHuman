@@ -14,15 +14,14 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-    // Relationship.associate = function (models) {
-    //     // We're saying that a Relationship belongs to a User
-    // 
-    //     Relationship.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    //};
+    Relationship.associate = function (models) {
+        // We're saying that a Relationship belongs to a User here. 
+        Relationship.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
     return Relationship;
 };
