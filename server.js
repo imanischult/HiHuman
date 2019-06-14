@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* eslint-disable no-console */
 // *****************************************************************************
 // Server.js - This file is the initial starting point for the Node/Express server.
@@ -57,7 +56,6 @@ var strategy = new Auth0Strategy(
 passport.use(strategy);
 
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -76,16 +74,6 @@ passport.deserializeUser(function (user, done) {
 
 var PORT = process.env.PORT || 8080;
 
-// Requiring our models for syncing
-
-=======
-var app = require("./app");
-var db = require("./model");
->>>>>>> a43fe6fcc83ada7fb70ae5977671872ee50896d5
-
-var PORT = process.env.PORT || 8080;
-
-<<<<<<< HEAD
 
 // Routes
 // =============================================================
@@ -93,17 +81,12 @@ app.use("/", userRouter);
 app.use("/api", apiRouter);
 app.use("/", authRouter);
 app.use(userInViews());
-// app.use(auth);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
-=======
-db.sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, function() {
-    //eslint-disable-line
->>>>>>> a43fe6fcc83ada7fb70ae5977671872ee50896d5
     console.log("App listening on PORT " + PORT);
   });
 });
