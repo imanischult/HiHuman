@@ -37,9 +37,6 @@ var sess = {
   saveUninitialized: true
 };
 
-<<<<<<< HEAD
-if (app.get("env") === "production") {
-=======
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
 
@@ -50,7 +47,6 @@ app.use(express.json());
 console.log(app.get('env'));
 
 if (app.get('env') === 'production') {
->>>>>>> 019adc1cea1807afcdef905c2b88b248f7e2111d
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 app.use(session(sess));
