@@ -39,25 +39,28 @@ var secured = require("../controllers/secured");
         message: "Please check inputs and resubmit."
       });
       return;
-    }
+    } else {
+      db.User.create({
+        firstName: firstName,
+        lastName: lastName,
+        userName: userName,
+        email: email
+      })
+        .then(user => {
+          res.status(201);
+          res.json(user);
+        })
+        .catch(error => {
+          res.status(400);
+          res.json(error);
+        });
+    };
+
+    })
     // Create a new user
 
     //Will need to add logic to call this method after authentication, if there is no matching user in our database.
-    db.User.create({
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-      email: email
-    })
-      .then(user => {
-        res.status(201);
-        res.json(user);
-      })
-      .catch(error => {
-        res.status(400);
-        res.json(error);
-      });
-  });
+    
 
    //Routes for the new modules will go here
 

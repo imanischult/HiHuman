@@ -37,7 +37,20 @@ var sess = {
   saveUninitialized: true
 };
 
+<<<<<<< HEAD
 if (app.get("env") === "production") {
+=======
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
+
+// Parse application body as JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+console.log(app.get('env'));
+
+if (app.get('env') === 'production') {
+>>>>>>> 019adc1cea1807afcdef905c2b88b248f7e2111d
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 app.use(session(sess));
@@ -98,6 +111,7 @@ app.use("/api", apiRouter);
 app.use("/", authRouter);
 app.use(userInViews());
 
+module.exports = app;
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
