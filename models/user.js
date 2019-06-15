@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         profilePicture: {
-            type: DataTypes.URL,
+            type: DataTypes.STRING,
         }
 
     });

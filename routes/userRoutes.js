@@ -29,13 +29,3 @@ router.get('user', secured(), function (req, res, next) {
 // });
 
 module.exports = router;
-
-router.get("/", function(req, res) {
-  cat.all(function(data) {
-    var hbsObject = {
-      cats: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
-});
