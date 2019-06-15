@@ -1,4 +1,4 @@
-//this is the file that contains the routes what interact with the database, and display data on pages.
+//this is the file that contains the routes what interact with the database.
 
 // Dependencies
 // =============================================================
@@ -17,8 +17,8 @@ var secured = require("../controllers/secured");
 //when a new account is created, we need a post route to the db to add all the infoz.
 
 
-  // Get a user profile...
-  router.get("/users/:id", secured(), function (req, res) {
+  // Get a user profile that does not belong to the user
+  router.get("/api/users/:id", function (req, res) {
     //find the user by the user_id
     db.User.findOne({
       where: {
@@ -30,21 +30,25 @@ var secured = require("../controllers/secured");
     });
   });
 
-
+  //use this for the form we use to get additional info and save in the DB.
   router.post("/api/users", function(req, res) {
-    const { email, firstName, lastName, userName } = req.body;
-    if (!userName || !email || !firstName || !lastName) {
+    const { firstName, lastName, userName } = req.body;
+    //username will be the name that we display here
+    if (!userName || !firstName || !lastName) {
       res.status(422);
       res.json({
         message: "Please check inputs and resubmit."
       });
       return;
     } else {
-      db.User.create({
+      db.User.update({
         firstName: firstName,
         lastName: lastName,
         userName: userName,
-        email: email
+      }, {
+        where: {
+          id: user.id
+        }
       })
         .then(user => {
           res.status(201);
@@ -57,9 +61,7 @@ var secured = require("../controllers/secured");
     };
 
     })
-    // Create a new user
-
-    //Will need to add logic to call this method after authentication, if there is no matching user in our database.
+   
     
 
    //Routes for the new modules will go here
