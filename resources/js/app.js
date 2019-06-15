@@ -40,14 +40,14 @@ $("#newAccount").click(function () {
 });
 
 // When the user clicks "next" button, open "choose mask"
-// $('#nextBut').click(function () {
-//   window.location.href = 'chooseAMask.html';
-// });
+$('#nextBut').click(function () {
+  window.location.href = 'chooseAMask.html';
+});
 
-// //When the user clicks "next" button, open "choose traits"
-// $('#userAccount').click(function () {
-//   // window.location.href = '';
-// });
+// When the user clicks "next" button, open "choose mask"
+$('#nextBut').click(function () {
+  window.location.href = 'chooseAMask.html';
+});
 
 //When the user clicks "sign in" button, open "user profile"
 $('#userAccount').click(function () {
@@ -86,9 +86,6 @@ $closeSignIn.on('click', function () {
 
 
 
-
-
-// ** ACCOUNT LOGIC **
 
 
 //sign in functionality. Firebase docs provides this. 
@@ -290,66 +287,78 @@ const chooseReasons = function () {
 // admin page functionality
 
 
-//this function takes a userid from the database and gives them the admin role
-// const setAdmin = (uid) => {
-//   db.ref("users").on("child_added", function(childSnapshot) {
-//     role: admin
-//   })
-//     .then(function (UserInfo) {
-//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
-//       console.log('Successfully updated user', UserInfo.toJSON());
-//     })
-//     .catch(function (error) {
-//       console.log('Error updating user:', error);
-//     });
-// }
 
-//on clicking the make admin button on the admin page
-// $("#make-admin").on("click", function (event) {
-//   event.preventDefault();
-//   let usrEmail = $("#adminEmail").val().trim();
-//   //need to figure out how to identify the specific user, which is haaaard in realtime without using, like, node. 
-//   db.ref(`users/email`).on()
-//   firebase.user
-//     .then(function (UserInfo) {
-//       // See the UserInfoUserInfo reference doc for the contents of UserInfo.
-//       console.log('Successfully fetched user data:', UserInfo.toJSON());
-//       let uid = UserInfo.uid;
-//       setAdmin(uid);
-//     })
-//     .catch(function (error) {
-//       console.log('Error fetching user data:', error);
-//     });
-// })
-// function toggleRegisterState() {
-//     $('.toggle span').toggleClass('toggled');
+//create a new account when the newAccount button is clicked. 
+const signUp = (event) => {
+  event.preventDefault();
+  //Capture all the data. Doing it this way because I try to avoid too many global variables.
+  let email = $("#email").val().trim();
+  let username = $("#user_name").val().trim();
+  let pass = $("#userPassword").val().trim();
+  let passVal = $("#re-type_password").val().trim();
+  console.log(email, username, pass, passVal);
+  //verify that the passwords match -- this is disabled for the moment because it's throwing a 400 instead.
+  // if (pass === passVal) {
+  //if matching, then run the auth function with the variables above as parameters. 
+      auth.createUserWithEmailAndPassword(email, pass).then(function (data) {
+        try {
+          db.ref('users').child(data.user.uid).set({
+            email: data.user.email,
+            key: data.user.uid,
+            username: username,
+            newUser: true,
+            isAdmin: false,
+            mask: "",
+            icons: [],
+            reasons: [],
+            testsTaken: [],
+            noTestsTaken: 0
+          })
+          console.log("user created");
 
-//     if (is_register) {
-//       $('form h3').text('Sign Up');
-//       $('form #confirm').show();
-//     } else {
-//       $('form h3').text('Log In');
-//       $('form #confirm').hide();
-//     }
+        } catch (error) {
+          console.log(`Error creating database entry for user! --> ${error}`);
+        }
+      }).then(function () {
+        checkLogin();
+        window.location.replace('chooseAMask.html');
+      }).catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        if (errorCode == 'auth/email-already-in-use') {
+          $("#email").append("<p class='errorText'>this email already exists in the system</p>");
+        }
+      })
+      // } else { // if not matching, show an error. 
+      //   $("#password").append("<p class='errorText'>passwords do not match</p>")
+      // }
+      return "user created";
+    
+};
 
-//     is_register = !is_register;
-//   }
 
-// function checkAuthState() {
-//     auth.onAuthStateChanged(function (user) {
-//       if (user) {
-//         uid = auth.currentUser.uid;
 
-//         showAuthView(true, user.email);
 
-//         db.ref('/users/' + user.uid).once('value', function (ref) {
-//           console.log(ref.val());
-//         })
-//       } else {
-//         showAuthView(false, null);
-//       }
-//     });
-//   }
+
+function logUserOut() {
+  auth.signOut().then(function () {
+    // showAuthView(false, null);
+    checkLogin();
+  }).catch(function (error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  });
+}
+
+function init() {
+  $('#topCreateLink').on('click', signUp);
+  $('#topSignInLink').on('click', signIn);
+  $('#logout').on('click', logUserOut);
+  checkLogin();
+}
 
 
 function logUserOut() {
