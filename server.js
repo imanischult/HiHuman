@@ -91,6 +91,7 @@ app.use("/api", apiRouter);
 app.use("/", authRouter);
 app.use(userInViews());
 
+module.exports = app;
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

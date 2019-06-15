@@ -11,9 +11,12 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <!-- Linking CSS -->
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    </script>
+    <link rel="stylesheet" type="text/css" href="./css/styleHome.css">
+
 </head>
 
 <body>
@@ -31,57 +34,139 @@
     <div class="row">
             <div class="col m12">
     <nav>
-            <div class="nav-wrapper">
-              <a href="index.html" class="brand-logo">&nbsp [HiH]</a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">&nbsp [HiH]</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="hhInstructions.html">About App</a></li>
                 <li><a href="#" class="noAuth" id="topSignInLink">Sign In</a></li>
-                <li><a href="#" class="noAuth", id="topCreateLink">Create Account</a></li>
-              </ul>
-            </div>
-        </nav>
-    </div>
-</div>
+                <li><a href="#" class="noAuth" , id="topCreateLink">Create Account</a></li>
+            </ul>
+        </div>
+    </nav>
 
      <div class="container">
         <div class="row">
             <div class="col m12 mainBox">
                 <div class="card-panel grey" id="hiHumanBox">
 
-                   <div id="hhText"> <span class="white-text">Hi, Human</span></div>
+                    <div id="hhText"> <span class="white-text">Hi, Human</span></div>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="col s12 landingButtons">
+                        <a id="signIn" class="waves-effect waves-light btn noAuth">Sign In</a>
+
+                        <a id="newAccountOpenModal" class="waves-effect waves-light btn noAuth">New
+                            Account</a>
+                    </div>
                 </div>
             </div>
         </div>
-     </div>
-        <div class="container">
-            
+    </div>
 
-        <div class="row">
-                <div class="row">
-        
-                <div class="col m6">
-        <!-- <div class='row landingButtons '> -->
-            <a id='signIn' href="https://hnic.auth0.com/authorize?response_type=code&client_id=SLugSOYtWFWSNn8GBq8Y5CgpoDrwUkpi&redirect_uri=${uri}/callback&scope=openid%20profile&state=xyzABC123" class="swaves-effect waves-light btn  noAuth">Sign In</a>
-        </div>
-        
-        <div class="col m6">
-            <!-- <div class='row landingButtons -->
-                <a id='newAccountOpenModal'class="cwaves-effect waves-light btn noAuth">Create a New Account</a>
+
+    <!-- *** The Create New Profile Modal *** -->
+
+
+    <div id="signUpModal" class='modal'>
+
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class='card-panel grey modalHeader'>
+                <span class='close' id="closeCreate">&times;</span>
+                <div class="modal-text white-text">CREATE YOUR HI, HUMAN ACCOUNT</div>
             </div>
-        </div>
+
+            <!-- Materialize CSS Input Form for Create Profile-->
+            <div class="row">
+                <form name="signUpForm" class="col s7">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="email" type="text" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="user_name" type="text" class="validate">
+
+                            <label for="user_name">Username</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="userPassword" type="password" class="validate">
+                            <label for="userPassword">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="signUpForm" id="re-type_password" type="password" class="validate">
+                            <label for="re-type_password">Re-type Password</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- Create account button within modal -->
+            <div class='row'>
+                <div class="input-field col s8">
+                    <a id='newAccount' class="waves-effect waves-light btn">Create Account</a>
+
+                </div>
+            </div>
         </div>
     </div>
 
 
 
+    <!-- *** The SIGN IN Modal *** -->
 
+    <div id="signInModal" class='modal'>
 
-    
+        <!-- Modal content -->
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class='card-panel grey modalHeader'>
+                <span class='close' id="closeSignIn">&times;</span>
+                <div class="modal-text white-text">Sign In</div>
+            </div>
+            <!-- Materialize CSS Input Form for Create Profile-->
+            <div class="row">
+                <form class="col s7">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="userSignIn" type="email" class="validate">
+                            <label for='userSignIn'>Email</label>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="user_password" type="password" class="validate">
+                                <label for="user_password">Password</label>
+                                <p class="hidden" id="wrongPassword">Password is incorrect</p>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Create account button within modal -->
+        <div class='row'>
+            <div class="input-field col s8">
+                <a id='userAccount' class="waves-effect waves-light btn">Sign In</a>
+            </div>
+        </div>
+    </div>
+
     <footer class="page-footer">
         <div class="footer-copyright">
-          <div class="container">
-          © 2017 Copyright
-          </div>
+            <div class="container">
+                © 2017 Copyright
+            </div>
         </div>
     </footer>
     <!-- below code ends page container -->
