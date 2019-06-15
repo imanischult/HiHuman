@@ -11,59 +11,47 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
     <link rel="stylesheet" href="/css/styleUP.css">
 
-
-
+    <link rel="stylesheet" type="text/css" href="/css/styleHome.css">
 </head>
 
 <body>
     <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">HiH</a>
+            <a href="/" class="brand-logo">HiH</a>
             <ul class="right hide-on-med-and-down">
-                <li><a>Manage Activities</a></li>
-                <li><a>Manage Friends</a></li>
-                <li><a>Log Out</a></li>
+                <li><a href="#">Manage Activities</a></li>
+                <li><a href="#">Manage Friends</a></li>
+                <li><a href="/logout">Log Out</a></li>
             </ul>
-        </div>
-        <div class="nav-content">
-            <span class="nav-title">Your Account</span>
-            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
-                <i class="material-icons">add</i>
-            </a>
         </div>
     </nav>
 
     {{!-- makes body render in other hdb pages, pulls all html els included in body --}}
     {{{body}}}
 
-           <footer class="page-footer">
-                        <div class="container">
-                          <div class="row">
-
-
-                          </div>
-                        </div>
-                        <div class="footer-copyright">
-                          <div class="container">
-                          © 2014 Copyright Text
-                          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                          </div>
-                        </div>
-                      </footer>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row"></div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
 
 
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
 
 
 </body>
