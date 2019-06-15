@@ -12,10 +12,16 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        displayName: {
+            type: DataTypes.STRING,
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false
         },
+        profilePicture: {
+            type: DataTypes.URL,
+        }
 
     });
 
@@ -31,4 +37,3 @@ module.exports = function (sequelize, DataTypes) {
 
     return User;
 };
-
