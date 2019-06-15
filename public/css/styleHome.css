@@ -1,0 +1,25 @@
+/* HOME PAGE CSS */
+
+* {
+    /* background-color: red; */
+}
+
+
+#hhText {
+    font-size: 60px;
+    text-align: center;
+    font-weight: 900;
+}
+
+/* /* .col.s6 {
+    padding: 10.5px;
+    text-align: center;
+    display:inline-block;
+    width:130px;
+    margin-left: 0px;
+} */
+
+.landingButtons {
+    text-align: center;
+    display: inline-block;
+} 

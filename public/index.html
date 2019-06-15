@@ -11,9 +11,12 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <!-- Linking CSS -->
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    </script>
+    <link rel="stylesheet" type="text/css" href="./css/styleHome.css">
+
 </head>
 
 <body>
@@ -29,37 +32,39 @@
         </div>
     </nav> -->
     <nav>
-            <div class="nav-wrapper">
-              <a href="index.html" class="brand-logo">&nbsp [HiH]</a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">&nbsp [HiH]</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="hhInstructions.html">About App</a></li>
                 <li><a href="#" class="noAuth" id="topSignInLink">Sign In</a></li>
-                <li><a href="#" class="noAuth", id="topCreateLink">Create Account</a></li>
-              </ul>
-            </div>
-          </nav>
+                <li><a href="#" class="noAuth" , id="topCreateLink">Create Account</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="row">
             <div class="col s12 m12 mainBox">
                 <div class="card-panel grey" id="hiHumanBox">
 
-                   <div id="hhText"> <span class="white-text">Hi, Human</span></div>
+                    <div id="hhText"> <span class="white-text">Hi, Human</span></div>
                 </div>
-                <div class="hhHomeBut">
 
-                <div class='row landingButtons '>
-                    <a id='signIn' class="swaves-effect waves-light btn  noAuth">Sign In</a>
+                <div class="row">
+                    
+                    <div class="col s12 landingButtons">
+                        <a id="signIn" class="waves-effect waves-light btn noAuth">Sign In</a>
+
+                        <a id="newAccountOpenModal" class="waves-effect waves-light btn noAuth">New
+                            Account</a>
+                    </div>
                 </div>
-                <div class='row landingButtons '></div>
-                <a id='newAccountOpenModal'class="cwaves-effect waves-light btn noAuth">Create a New Account</a>
-                </div>
-            </div>
             </div>
         </div>
+    </div>
 
 
-<!-- *** The Create New Profile Modal *** -->
+    <!-- *** The Create New Profile Modal *** -->
 
 
     <div id="signUpModal" class='modal'>
@@ -108,7 +113,7 @@
             <!-- Create account button within modal -->
             <div class='row'>
                 <div class="input-field col s8">
-                    <a id='newAccount'class="waves-effect waves-light btn">Create Account</a>
+                    <a id='newAccount' class="waves-effect waves-light btn">Create Account</a>
 
                 </div>
             </div>
@@ -128,21 +133,21 @@
                 <span class='close' id="closeSignIn">&times;</span>
                 <div class="modal-text white-text">Sign In</div>
             </div>
-        <!-- Materialize CSS Input Form for Create Profile-->
-        <div class="row">
-            <form class="col s7">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="userSignIn" type="email" class="validate">
-                        <label for='userSignIn'>Email</label>
-                    </div>
+            <!-- Materialize CSS Input Form for Create Profile-->
+            <div class="row">
+                <form class="col s7">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="user_password" type="password" class="validate">
-                            <label for="user_password">Password</label>
-                            <p class="hidden" id="wrongPassword">Password is incorrect</p>
+                            <input id="userSignIn" type="email" class="validate">
+                            <label for='userSignIn'>Email</label>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="user_password" type="password" class="validate">
+                                <label for="user_password">Password</label>
+                                <p class="hidden" id="wrongPassword">Password is incorrect</p>
+                            </div>
+                        </div>
                 </form>
             </div>
         </div>
@@ -150,30 +155,30 @@
         <!-- Create account button within modal -->
         <div class='row'>
             <div class="input-field col s8">
-                <a id='userAccount'class="waves-effect waves-light btn">Sign In</a>
+                <a id='userAccount' class="waves-effect waves-light btn">Sign In</a>
             </div>
         </div>
     </div>
-    
+
     <footer class="page-footer">
         <div class="footer-copyright">
-          <div class="container">
-          © 2017 Copyright
-          </div>
+            <div class="container">
+                © 2017 Copyright
+            </div>
         </div>
     </footer>
-                
-                
-        <!-- Firebase Links -->
-        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
-        <!-- This links jQuery-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <!-- This links JS -->
-        <script src="resources/js/app.js"></script>
+
+
+    <!-- Firebase Links -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+    <!-- This links jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- This links JS -->
+    <script src="resources/js/app.js"></script>
 
 </body>
 
