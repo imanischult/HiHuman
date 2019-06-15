@@ -3,7 +3,7 @@
 // Dependencies
 // =============================================================
 
-// require the various data we're pulling here, per Sequelize. Example: 
+// require the various data we're pulling here, per Sequelize. Example:
 var db = require("../models");
 var router = require("express").Router();
 var secured = require("../controllers/secured");
@@ -18,7 +18,7 @@ var secured = require("../controllers/secured");
 
 
   // Get a user profile...
-  router.get("/users/:id", secured(), function (req, res, next) {
+  router.get("/users/:id", secured(), function (req, res) {
     //find the user by the user_id
     db.User.findOne({
       where: {
@@ -31,7 +31,7 @@ var secured = require("../controllers/secured");
   });
 
 
-  app.post("/api/users", function(req, res) {
+  router.post("/api/users", function(req, res) {
     const { email, firstName, lastName, userName } = req.body;
     if (!userName || !email || !firstName || !lastName) {
       res.status(422);

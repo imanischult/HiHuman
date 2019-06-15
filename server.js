@@ -6,14 +6,16 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
+var exphbs = require("express-handlebars");
+var bodyParser = require("body-parser")
 var apiRouter = require("./routes/apiRoutes.js");
 var authRouter = require("./routes/authRoutes.js");
 var userRouter = require("./routes/userRoutes.js")
 var userInViews = require("./controllers/userInViews");
-var session = require('express-session');
-var dotenv = require('dotenv');
-var passport = require('passport');
-var Auth0Strategy = require('passport-auth0');
+var session = require("express-session");
+var dotenv = require("dotenv");
+var passport = require("passport");
+var Auth0Strategy = require("passport-auth0");
 dotenv.config();
 var db = require("./models");
 var app = express();
@@ -21,6 +23,11 @@ var app = express();
 const crypto = require("crypto");
 const id = crypto.randomBytes(16).toString("hex");
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // config express-session
 var sess = {
@@ -30,7 +37,7 @@ var sess = {
   saveUninitialized: true
 };
 
-if (app.get('env') === 'production') {
+if (app.get("env") === "production") {
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 app.use(session(sess));
@@ -43,7 +50,7 @@ var strategy = new Auth0Strategy(
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     callbackURL:
-      process.env.AUTH0_CALLBACK_URL || 'http://localhost:8080/callback'
+      process.env.AUTH0_CALLBACK_URL || "http://localhost:8080/callback"
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
@@ -73,6 +80,8 @@ passport.deserializeUser(function (user, done) {
 // =============================================================
 
 var PORT = process.env.PORT || 8080;
+
+app.use(express.static("public"));
 
 
 // Routes
