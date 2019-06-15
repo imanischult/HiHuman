@@ -19,11 +19,15 @@
   },
   "homepage": "https://github.com/Corbineau/ItsAmazing#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.6.5",
+    "passport": "^0.4.0",
+    "passport-auth0": "^1.1.0",
     "path": "^0.12.7",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "sequelize": "^5.8.9"
   },
   "devDependencies": {

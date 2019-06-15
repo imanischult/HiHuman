@@ -3,7 +3,7 @@ const chai = require("chai"),
 const chaiHttp = require("chai-http");
 
 chai.use(chaiHttp);
-const app = require("../app");
+const app = require("../server");
 
 describe("routes", function() {
   it("it should show the landing page w/o any errors", function(done) {
