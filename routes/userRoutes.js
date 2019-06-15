@@ -1,12 +1,12 @@
 // routes/users.js
 
-var express = require('express');
+var express = require("express");
 var secured = require("../controllers/secured");
 var router = express.Router();
 var db = require("../models");
 
 /* GET user profile. */
-router.get('user', secured(), function (req, res, next) {
+router.get("/user", secured(), function (req, res, next) {
   const { _raw, _json, ...userProfile } = req.user;
   console.log(req.user);
   db.User.findOne({
@@ -19,13 +19,15 @@ router.get('user', secured(), function (req, res, next) {
   //     id : req.body.params
   //   }
   // }).then(function (results) {
-    //...display the result data on the profile page, in the appropriate areas. 
-    res.render('user', {
+    //...display the result data on the profile page, in the appropriate areas.
+    res.render("userProfile", {
         userProfile: JSON.stringify(userProfile, null, 2),
-        title: 'Profile page'
+        title: "Profile page",
+        fullname: userProfile.displayName,
+        profileImg: userProfile.picture
       });
   });
-  
+
 // });
 
 module.exports = router;
