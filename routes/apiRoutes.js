@@ -32,9 +32,9 @@ var secured = require("../controllers/secured");
 
   //use this for the form we use to get additional info and save in the DB.
   router.post("/api/users", function(req, res) {
-    const { firstName, lastName, userName } = req.body;
+    const { name, userName } = req.body;
     //username will be the name that we display here
-    if (!userName || !firstName || !lastName) {
+    if (!userName || !name) {
       res.status(422);
       res.json({
         message: "Please check inputs and resubmit."
@@ -42,8 +42,7 @@ var secured = require("../controllers/secured");
       return;
     } else {
       db.User.update({
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
         userName: userName,
       }, {
         where: {

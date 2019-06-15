@@ -2,19 +2,15 @@ module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         authId: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        firstName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        lastName: {
-            type: DataTypes.STRING,
             allowNull: false
+        },
+        name: {
+            type: DataTypes.STRING,
+            
         },
         userName: {
             type: DataTypes.STRING,
-            allowNull: false
+            
         },
         displayName: {
             type: DataTypes.STRING,

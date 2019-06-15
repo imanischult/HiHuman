@@ -15,14 +15,16 @@ router.get("/user", secured(), function (req, res, next) {
     }
   }).then(res => {
     if(res) {
-      //render the user's info (events, friends, et al) from our DB
+      console.log("user exists!");
     } else {
-      //save the relevant auth0 user info into our DB, the prompt to complete profile.
+      //save the relevant auth0 user info into our DB, 
     db.User.create({
       authId: req.user.user_id,
-      email: req.user.email
+      email: req.user.emails[0].value,
+      profilePicture: req.user.picture,
     }).then(new_user => {
-      console.log(new_user);
+      // console.log(new_user);
+      //show prompt to complete profile; populate any existing values
     })
     }
 
