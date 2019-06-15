@@ -8,6 +8,11 @@ var db = require("../models");
 /* GET user profile. */
 router.get('user', secured(), function (req, res, next) {
   const { _raw, _json, ...userProfile } = req.user;
+  console.log(req.user);
+  db.User.findOne({
+    
+  })
+  
   //check to see if the user exists in the db. If not, route to a finish profile page, post all that crap in the db. 
   // db.User.findOne({
   //   where: {
@@ -24,3 +29,13 @@ router.get('user', secured(), function (req, res, next) {
 // });
 
 module.exports = router;
+
+router.get("/", function(req, res) {
+  cat.all(function(data) {
+    var hbsObject = {
+      cats: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
+  });
+});
