@@ -3,20 +3,23 @@
 // Dependencies
 // =============================================================
 
-// require the various data we're pulling here, per Sequelize. Example:
-// var User = require("../model/user.js");
-var db = require("../model/");
+// require the various data we're pulling here, per Sequelize. Example: 
+var db = require("../models");
+var router = require("express").Router();
+var secured = require("../controllers/secured");
+
 
 // Routes
 // =============================================================
 
 //Profile Page functions
 
-module.exports = function(app) {
-  // Get a user profile...
-  app.get("/api/users/:id", function(req, res) {
-    //find the user by the user_id
+//when a new account is created, we need a post route to the db to add all the infoz.
 
+
+  // Get a user profile...
+  router.get("/users/:id", secured(), function (req, res, next) {
+    //find the user by the user_id
     db.User.findOne({
       where: {
         id: req.params.id
@@ -26,6 +29,7 @@ module.exports = function(app) {
       res.json(results);
     });
   });
+
 
   app.post("/api/users", function(req, res) {
     const { email, firstName, lastName, userName } = req.body;
@@ -37,6 +41,8 @@ module.exports = function(app) {
       return;
     }
     // Create a new user
+
+    //Will need to add logic to call this method after authentication, if there is no matching user in our database.
     db.User.create({
       firstName: firstName,
       lastName: lastName,
@@ -53,9 +59,6 @@ module.exports = function(app) {
       });
   });
 
-  //Routes for the new modules will go here
+   //Routes for the new modules will go here
 
-  // app.post("/api/new", function(req, res) {
-
-  // });
-};
+  module.exports = router;
