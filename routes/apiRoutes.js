@@ -31,10 +31,10 @@ var secured = require("../controllers/secured");
   });
 
   //use this for the form we use to get additional info and save in the DB.
-  router.post("/api/users", function(req, res) {
-    const { name, userName } = req.body;
+  router.put("/api/update", secured(), function(req, res) {
+    const { name, username, profilePicture } = req.body;
     //username will be the name that we display here
-    if (!userName || !name) {
+    if (!username || !name) {
       res.status(422);
       res.json({
         message: "Please check inputs and resubmit."
@@ -43,7 +43,8 @@ var secured = require("../controllers/secured");
     } else {
       db.User.update({
         name: name,
-        userName: userName,
+        userName: username,
+        profilePicture: profilePicture
       }, {
         where: {
           id: user.id
