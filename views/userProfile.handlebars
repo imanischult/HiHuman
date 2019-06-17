@@ -4,11 +4,14 @@
         <div class="friendsBox">
           <i class="small material-icons">people</i>
           <ul class="collection">
+            {{!-- this should be replaed with a handlebars marker; using the handlebars each tag. We should then have a partial called friends which contains for each friend: 
+            in the comments below --}}
             <li class="collection-item avatar">
+              
               <img src="images/9EtherMask.png" alt="" class="circle">
-              <span class="title">Lizard Man</span>
-              <p>status: online<br>
-              1 pending Activities</p><a href="#!" class=
+              <span class="title">Lizard Man {{!-- this should be replaced by this.username in brackets. --}}</span>
+              <p>status: online {{!-- this should be replaced by this.status in brackets, if we actually want to include a state identifier. If so, this is a whole other bit of functionality --}}<br>
+              1 pending Activities {{!-- does this refer to events on their schedule? --}}</p><a href="#!" class=
               "secondary-content"><i class=
               "material-icons">grade</i></a>
             </li>
