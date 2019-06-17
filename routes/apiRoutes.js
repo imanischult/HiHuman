@@ -17,7 +17,7 @@ var secured = require("../controllers/secured");
 //when a new account is created, we need a post route to the db to add all the infoz.
 
 
-  // Get a user profile...
+  // Get someone else's user profile
   router.get("/users/:id", secured(), function (req, res) {
     //find the user by the user_id
     db.User.findOne({
