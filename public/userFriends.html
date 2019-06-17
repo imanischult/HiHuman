@@ -1,19 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <title>Curl Queen</title>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- font for page ubuntu -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <!-- icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="public/css/styleUP.css">
 </head>
+
 <body>
 
 
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">HiH</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a>Manage Activities</a></li>
+                <li><a>Manage Friends</a></li>
+                <li><a>Log Out</a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <span class="nav-title">Your Account</span>
+            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+    </nav>
 
+    <div class="container">
+        `
+        <div class="row">
 
+            <div class="col s12">
+                <!-- !PAGE TITLE -->
+                <p class="userFriends">Friends(2)</p>
+                <!-- !start of FRIEND BOX -->
+                <div class="friendBox">
+                    <ul class="collection">
+                        <!-- !!!!1 -->
+                        <li class="collection-item avatar">
+                            <div class="uFImgBox">
+                                <img src="images/chillavanilla.png" alt="" class="FP1circle"><br> <span
+                                    class="FPtitle">CHILLA VANILLA</span><br>
+                                <a class="rfwaves-effect waves-light btn-small">Remove Friend</a>
+                            </div>
+                            <!-- end of image -->
 
+                            <div class="wrapperUFB">
+
+                                <div class="card">
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information. I
+                                            am convenient because I require little markup to use effectively.</p>
+                                    </div>
+                                    <div class="card-tabs">
+                                        <ul class="tabs tabs-fixed-width">
+                                            <li class="tab"><a href="#test4">Interests</a></li>
+                                            <li class="tab"><a class="active" href="#test5">Activities</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="card-content grey lighten-4">
+                                        <div id="test4">Reading<br>Traveling</div>
+                                        <!-- link data activity -->
+                                        <div id="test5"><a
+                                                href="https://www.atlantatrails.com/chattahoochee-river-trails/"
+                                                target="_blank">Chattahoochee River Trails</a></div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                        <br>
+                        <!-- !!!!2 -->
+                        <li class="collection-item avatar">
+                                <div class="uFImgBox">
+                                    <img src="images/chillavanilla.png" alt="" class="FP1circle"><br> <span
+                                        class="FPtitle">CHILLA VANILLA</span><br>
+                                    <a class="rfwaves-effect waves-light btn-small">Remove Friend</a>
+                                </div>
+                                <!-- end of image -->
     
+                                <div class="wrapperUFB2">
     
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <p>I am a very simple card. I am good at containing small bits of information. I
+                                                am convenient because I require little markup to use effectively.</p>
+                                        </div>
+                                        <div class="card-tabs">
+                                            <ul class="tabs tabs-fixed-width">
+                                                <li class="tab"><a href="#test4">Interests</a></li>
+                                                <li class="tab"><a class="active" href="#test5">Activities</a></li>
+    
+                                            </ul>
+                                        </div>
+                                        <div class="card-content grey lighten-4">
+                                            <div id="test4">Reading<br>Traveling</div>
+                                            <!-- link data activity -->
+                                            <div id="test5"><a
+                                                    href="https://www.atlantatrails.com/chattahoochee-river-trails/"
+                                                    target="_blank">Chattahoochee River Trails</a></div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                            </li>
+                           
+                        <!-- !!!! -->
+                    </ul>
+                    <!-- !END OF FRIEND BOX -->
+                </div>
+            </div>
+        </div>
+
+        <!-- !end of container row -->
+</div>
+
+  
+<footer class="page-footer">
+        <div class="container">
+          <div class="row">
+        
+           
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+
 </body>
+
+<script>
+    var elem = document.querySelector('.tabs'); var instance = M.Tabs.init(elem, {});
+
+    console.log("script connect");
+</script>
 
 </html>
