@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="/css/styleUP.css">
 
-    {{!-- <link rel="stylesheet" type="text/css" href="/css/styleHome.css"> --}}
+    <link rel="stylesheet" type="text/css" href="/css/styleHome.css">
 </head>
 
 <body>
@@ -26,7 +26,9 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="/activities">Manage Activities</a></li>
                 <li><a href="/friends">Manage Friends</a></li>
-                <li><a href="/logout">Log Out</a></li>
+                {{#if isLoggedIn}}<li id="logout"><a href="/logout">Log Out</a></li>
+                {{/if}}
+                {{!-- this works on home but not on users, FIX THIS. --}}
             </ul>
         </div>
     </nav>
