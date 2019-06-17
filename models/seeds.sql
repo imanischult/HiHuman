@@ -10,10 +10,9 @@ VALUES
     ("number"),
     ("email");
 
-INSERT INTO Connections
+INSERT INTO 
     (name)
 VALUES
     ("friendID"),
     ("friendNumber"),
     ("friendEmail");
-

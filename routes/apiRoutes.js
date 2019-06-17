@@ -1,22 +1,25 @@
-//this is the file that contains the routes what interact with the database, and display data on pages.
+//this is the file that contains the routes what interact with the database.
 
 // Dependencies
 // =============================================================
 
 // require the various data we're pulling here, per Sequelize. Example:
-// var User = require("../model/user.js");
-var db = require("../model/");
+var db = require("../models");
+var router = require("express").Router();
+var secured = require("../controllers/secured");
+
 
 // Routes
 // =============================================================
 
 //Profile Page functions
 
-module.exports = function(app) {
-  // Get a user profile...
-  app.get("/api/users/:id", function(req, res) {
-    //find the user by the user_id
+//when a new account is created, we need a post route to the db to add all the infoz.
 
+
+  // Get a user profile that does not belong to the user
+  router.get("/api/users/:id", function (req, res) {
+    //find the user by the user_id
     db.User.findOne({
       where: {
         id: req.params.id
@@ -27,35 +30,39 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/users", function(req, res) {
-    const { email, firstName, lastName, userName } = req.body;
-    if (!userName || !email || !firstName || !lastName) {
+  //use this for the form we use to get additional info and save in the DB.
+  router.post("/api/users", function(req, res) {
+    const { name, userName } = req.body;
+    //username will be the name that we display here
+    if (!userName || !name) {
       res.status(422);
       res.json({
         message: "Please check inputs and resubmit."
       });
       return;
-    }
-    // Create a new user
-    db.User.create({
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-      email: email
-    })
-      .then(user => {
-        res.status(201);
-        res.json(user);
+    } else {
+      db.User.update({
+        name: name,
+        userName: userName,
+      }, {
+        where: {
+          id: user.id
+        }
       })
-      .catch(error => {
-        res.status(400);
-        res.json(error);
-      });
-  });
+        .then(user => {
+          res.status(201);
+          res.json(user);
+        })
+        .catch(error => {
+          res.status(400);
+          res.json(error);
+        });
+    };
 
-  //Routes for the new modules will go here
+    })
+   
+    
 
-  // app.post("/api/new", function(req, res) {
+   //Routes for the new modules will go here
 
-  // });
-};
+  module.exports = router;

@@ -22,45 +22,55 @@
 .landingButtons {
     text-align: center;
     display: inline-block;
-} 
+}
 
 .hihTitle {
     text-align: center;
   }
-  
+
   #titlebox {
     background-color: #ee6373;
     text-align: center;
     margin: 100px 30px 30px 30px;
   }
-  
+
   #titleElement {
     display: inline-block;
     color: white;
   }
-  
+
   body,
   button {
     font-family: "Ubuntu", sans-serif;
   }
-  
+
   a.button.row.hihTitle.waves-effect.waves-light.btn-large {
     padding: 0px 80px;
     font-size: 16px;
   }
-  
+
   .button-element {
     text-align: center;
   }
-  
+
   .text {
     font-size: 100px;
   }
-  
+
   /* .blue-square {
     background-color: #0074d9;
     width: 100px;
     height: 100px;
     display: inline-block;
   } */
-  
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+

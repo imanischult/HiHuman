@@ -27,6 +27,6 @@
                 "message": "Unexpected property on console object was called"
             }
         ],
-        "quotes": ["error", "double", { "allowTemplateLiterals": true }, { "avoidEscape": true }]
+        "quotes": ["error", "double", { "allowTemplateLiterals": true }]
     }
 }
