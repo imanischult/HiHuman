@@ -1,18 +1,4 @@
 
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyDY0ap1bIDwwvSRsvusGOtH1ow7F6AqPyU",
-  authDomain: "hiawesomehumans.firebaseapp.com",
-  databaseURL: "https://hiawesomehumans.firebaseio.com",
-  projectId: "hiawesomehumans",
-  messagingSenderId: "501987551176",
-  name: "Hi Humans!"
-};
-firebase.initializeApp(config);
-
-const auth = firebase.auth();
-const db = firebase.database();
-var uid;
 
 
 
@@ -386,6 +372,3 @@ function init() {
 
 // Start The App
 init();
-
-
-

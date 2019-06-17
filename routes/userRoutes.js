@@ -23,14 +23,14 @@ router.get("/user", secured(), function (req, res, next) {
       email: req.user.emails[0].value,
       profilePicture: req.user.picture,
     }).then(new_user => {
-      // console.log(new_user);
+      console.log(new_user);
       //show prompt to complete profile; populate any existing values
     })
     }
 
   })
 
-    //currently, this is the code that is displaying what we see on the profile page at /user. 
+    //currently, this is the code that is displaying what we see on the profile page at /user (in the userProfile.handlebars file). 
     res.render("userProfile", {
         userProfile: JSON.stringify(userProfile, null, 2),
         title: "Profile page",
