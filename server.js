@@ -7,10 +7,11 @@
 // =============================================================
 var express = require("express");
 var exphbs = require("express-handlebars");
-var bodyParser = require("body-parser")
+var bodyParser = require("body-parser");
 var apiRouter = require("./routes/apiRoutes.js");
 var authRouter = require("./routes/authRoutes.js");
-var userRouter = require("./routes/userRoutes.js")
+var userRouter = require("./routes/userRoutes.js");
+var hdbRouter = require("./routes/hdbRoutes.js");
 var userInViews = require("./controllers/userInViews");
 var session = require("express-session");
 var dotenv = require("dotenv");
@@ -92,19 +93,13 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  if (req.user) {
-    console.log(req.user);
-    res.render("home", { isLoggedIn: true, buttonData: "Your Profile" });
-  } else {
-    res.render("home", { isLoggedIn: false, buttonData: "Login/Signup" });
-  }
-});
+
 // Routes
 // =============================================================
 app.use("/", userRouter);
 app.use("/api", apiRouter);
 app.use("/", authRouter);
+app.use("/", hdbRouter);
 app.use(userInViews());
 
 module.exports = app;
