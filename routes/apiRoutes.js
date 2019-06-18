@@ -22,6 +22,7 @@ var me = complete();
 //use this for the form we use to get additional info and save in the DB.
 router.put("/update", secured(), function (req, res) {
   const { name, username, profilePicture } = req.body;
+  console.log(req.body);
   //username will be the name that we display here
   if (!username || !name) {
     res.status(422);
@@ -39,30 +40,46 @@ router.put("/update", secured(), function (req, res) {
       userName: userName,
       profilePicture: profilePicture
     })
-      .then(user => {
+    .then(function(user) {
+      console.log(user);
+      router.get("/user", function (req, res) {
+
+        res.render("userProfile", {
+          isLoggedIn: true,
+          profile: user,
+          title: `${user.get("name")}'s Profile page`,
+          //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
+          fullname: user.get("name"),
+          username: user.get("username"),
+          profileImg: user.get("profilePicture")
+        })
         console.log(user);
         res.status(201);
         res.json(user);
-      })
+      });
+    })
       .catch(error => {
         res.status(400);
         res.json(error);
-      }).then(user => {
-        router.get("/user", function (req, res) {
-
-          res.render("userProfile", {
-            isLoggedIn: true,
-            title: `${user.get("name")}'s Profile page`,
-            //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
-            fullname: user.get("name"),
-            username: user.get("username"),
-            profileImg: user.get("profilePicture")
-          })
-        });
       })
   }
 })
 
-//Routes for the new modules will go here
+//Create a new Activity
+
+router.post("/activity", secured(), function(req, res) {
+  db.User.create({
+    name: res.name,
+      time: res.time,
+      location: res.loc,
+      invitees: res.invitees,
+      notes: res.notes
+  }).then(function (user) {
+    res.render("userActivities", {
+      user : user,
+    })
+  })
+  
+})
 
 module.exports = router;
