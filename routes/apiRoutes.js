@@ -39,26 +39,27 @@ router.put("/update", secured(), function (req, res) {
       userName: userName,
       profilePicture: profilePicture
     })
-      .then(user => {
+    .then(function(user) {
+      console.log(user);
+      router.get("/user", function (req, res) {
+
+        res.render("userProfile", {
+          isLoggedIn: true,
+          profile: user,
+          title: `${user.get("name")}'s Profile page`,
+          //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
+          fullname: user.get("name"),
+          username: user.get("username"),
+          profileImg: user.get("profilePicture")
+        })
         console.log(user);
         res.status(201);
         res.json(user);
-      })
+      });
+    })
       .catch(error => {
         res.status(400);
         res.json(error);
-      }).then(user => {
-        router.get("/user", function (req, res) {
-
-          res.render("userProfile", {
-            isLoggedIn: true,
-            title: `${user.get("name")}'s Profile page`,
-            //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
-            fullname: user.get("name"),
-            username: user.get("username"),
-            profileImg: user.get("profilePicture")
-          })
-        });
       })
   }
 })
@@ -72,6 +73,8 @@ router.post("/activity", secured(), function(req, res) {
       location: location,
       invitees: invitees,
       notes: notes
+  }).then(function (user) {
+    res.render("userActivities", )
   })
   
 })

@@ -51,7 +51,6 @@ $(function () {
       name: $("#name").val().trim(),
       username: $("#username").val().trim(),
       profilePicture: $("#profilePic").val().trim(),
-        email: $("#email").val().trim()
     };
 
     //Allows a user to close the browser without completing sign up
