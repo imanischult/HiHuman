@@ -1,5 +1,79 @@
 
+
 //onclick handler for deleting friends
+
+$(function() {
+  $(".del").on("click", function(event) {
+    var id = $(this).data("id");
+
+    // Send the DELETE request.
+    $.ajax("/api/friends/" + id, {
+      type: "DELETE"
+    }).then(function() {
+      console.log("deleted id ", id);
+      // Reload the page to get the updated list
+      location.reload();
+    });
+  });
+
+  $(".create-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    var newHih = {
+      eventName: $("#event-name")
+        .val()
+        .trim(),
+      time: $("#time")
+        .val()
+        .trim(),
+      loc: $("#loc")
+        .val()
+        .trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/events", {
+      type: "POST",
+      data: newHih
+    }).then(function() {
+      console.log("created new event");
+      // Reload the page to add the event to the list of open events.
+      //   location.reload();
+    });
+  });
+
+  //for updating the profile
+  $(".update-profile").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    var updatedUser = {
+      name: $("#name")
+        .val()
+        .trim(),
+      username: $("#username")
+        .val()
+        .trim(),
+      profilePicture: $("#profilePic")
+        .val()
+        .trim()
+    };
+
+    var id = $(this).data("id");
+
+    // Send the POST request.
+    $.ajax("/api/users/" + id, {
+      type: "PUT",
+      data: updatedUser
+    }).then(function() {
+      console.log("updated user");
+      // Reload the page to get the updated list
+      location.assign("/user");
+    });
+  });
+});
+
 $(function () {
   $(".del").on("click", function (event) {
     var id = $(this).data("id");
@@ -25,8 +99,8 @@ $(function () {
       name: $("#activity-name").val().trim(),
       time: $("#time").val().trim(),
       loc: $("#location").val().trim(),
-      invitees: $("#location").val().trim(),
-      notes: $("#location").val().trim()
+      invitees: $("#invitees").val().trim(),
+      notes: $("#notes").val().trim()
     };
 
     // Send the POST request.
@@ -36,8 +110,7 @@ $(function () {
     }).then(
       function () {
         console.log("created new event");
-        // Reload the page to add the event to the list of open events. 
-        //   location.reload();
+        router.get("user/");
       }
     );
   });
@@ -80,7 +153,7 @@ $(function () {
       function () {
         console.log("updated user");
         // Reload the page to get the updated list
-        location.assign("/user");
+        // router.get("/user")
       }
     );
   });

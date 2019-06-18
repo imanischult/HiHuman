@@ -22,6 +22,7 @@ var me = complete();
 //use this for the form we use to get additional info and save in the DB.
 router.put("/update", secured(), function (req, res) {
   const { name, username, profilePicture } = req.body;
+  console.log(req.body);
   //username will be the name that we display here
   if (!username || !name) {
     res.status(422);
@@ -68,13 +69,15 @@ router.put("/update", secured(), function (req, res) {
 
 router.post("/activity", secured(), function(req, res) {
   db.User.create({
-    name: name,
-      time: time,
-      location: location,
-      invitees: invitees,
-      notes: notes
+    name: res.name,
+      time: res.time,
+      location: res.loc,
+      invitees: res.invitees,
+      notes: res.notes
   }).then(function (user) {
-    res.render("userActivities", )
+    res.render("userActivities", {
+      user : user,
+    })
   })
   
 })

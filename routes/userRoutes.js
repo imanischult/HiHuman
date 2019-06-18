@@ -25,7 +25,7 @@ router.get("/user", secured(), function (req, res, next) {
   }).then(user => {
     if (user) {
       console.log(`user exists! Id is: ${res.dataValues.id}`);
-      res.get('id');
+      // res.get('id');
       
     } else {
       //save the relevant auth0 user info into our DB, 
