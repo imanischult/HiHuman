@@ -22,8 +22,8 @@ router.get("/user", secured(), function (req, res, next) {
     where: {
       authId: req.user.user_id,
     }
-  }).then(res => {
-    if (res) {
+  }).then(user => {
+    if (user) {
       console.log(`user exists! Id is: ${res.dataValues.id}`);
       res.get('id');
       
