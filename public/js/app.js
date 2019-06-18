@@ -1,7 +1,4 @@
 
-
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-
 //onclick handler for deleting friends
 $(function () {
   $(".del").on("click", function (event) {
@@ -24,16 +21,18 @@ $(function () {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
-    var newHih = {
-      eventName: $("#event-name").val().trim(),
+    var newActivity = {
+      name: $("#activity-name").val().trim(),
       time: $("#time").val().trim(),
-      loc: $("#loc").val().trim()
+      loc: $("#location").val().trim(),
+      invitees: $("#location").val().trim(),
+      notes: $("#location").val().trim()
     };
 
     // Send the POST request.
-    $.ajax("/api/events", {
+    $.ajax("/api/activities", {
       type: "POST",
-      data: newHih
+      data: newActivity
     }).then(
       function () {
         console.log("created new event");
@@ -51,7 +50,7 @@ $(function () {
     var updatedUser = {
       name: $("#name").val().trim(),
       username: $("#username").val().trim(),
-      profilePicture: $("#profilePic").val().trim()
+      profilePicture: $("#profilePic").val().trim(),
         email: $("#email").val().trim()
     };
 

@@ -7,6 +7,8 @@
 var db = require("../models");
 var router = require("express").Router();
 var secured = require("../controllers/secured");
+var complete = require("../controllers/complete");
+var me = complete();
 
 
 // Routes
@@ -17,48 +19,54 @@ var secured = require("../controllers/secured");
 //when a new account is created, we need a post route to the db to add all the infoz.
 
 
-  // Get a user profile that does not belong to the user
-  router.get("/api/users/:id", function (req, res) {
-    //find the user by the user_id
-    db.User.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(results) {
-      //...display the result data on the profile page, in the appropriate areas.
-      res.json(results);
+//use this for the form we use to get additional info and save in the DB.
+router.put("/update", secured(), function (req, res) {
+  const { name, username, profilePicture } = req.body;
+  //username will be the name that we display here
+  if (!username || !name) {
+    res.status(422);
+    res.json({
+      message: "Please check inputs and resubmit."
     });
-  });
-
-  //use this for the form we use to get additional info and save in the DB.
-  router.put("/api/users", function(req, res) {
-    const { name, userName } = req.body;
-    //username will be the name that we display here
-    if (!userName || !name) {
-      res.status(422);
-      res.json({
-        message: "Please check inputs and resubmit."
-      });
-      return;
-    } else {
-      db.User.update({
-        name: name,
-        userName: userName,
-      })
-        .then(user => {
-          res.status(201);
-          res.json(user);
-        })
-        .catch(error => {
-          res.status(400);
-          res.json(error);
-        });
-    };
-
+    return;
+  } else {
+    db.User.update({
+      where: {
+        authId : me.user_id
+      }
+    }, {
+      name: name,
+      userName: userName,
+      profilePicture: profilePicture
     })
-   
-    
+      .then(user => {
+        console.log(user);
+        res.status(201);
+        res.json(user);
+      })
+      .catch(error => {
+        res.status(400);
+        res.json(error);
+      }).then(user => {
+        router.get("/user", function (req, res) {
 
-   //Routes for the new modules will go here
+          res.render("userProfile", {
+            isLoggedIn: true,
+            title: `${user.get("name")}'s Profile page`,
+            //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
+            fullname: user.get("name"),
+            username: user.get("username"),
+            profileImg: user.get("profilePicture")
+          })
+        });
+      })
+  }
+})
 
-  module.exports = router;
+//Create a new Activity
+
+router.post("/activity", secured(), function(req, res) {
+  
+})
+
+module.exports = router;
