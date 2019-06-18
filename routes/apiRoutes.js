@@ -52,11 +52,11 @@ router.put("/update", secured(), function (req, res) {
 
           res.render("userProfile", {
             isLoggedIn: true,
-            title: `${user.name}'s Profile page`,
+            title: `${user.get("name")}'s Profile page`,
             //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
-            fullname: user.name,
-            username: user.username,
-            profileImg: user.profilePicture
+            fullname: user.get("name"),
+            username: user.get("username"),
+            profileImg: user.get("profilePicture")
           })
         });
       })

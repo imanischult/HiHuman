@@ -26,6 +26,7 @@ router.get("/user", secured(), function (req, res, next) {
     if (res) {
       console.log(`user exists! Id is: ${res.dataValues.id}`);
       res.get('id');
+      
     } else {
       //save the relevant auth0 user info into our DB, 
       db.User.create({
@@ -35,6 +36,7 @@ router.get("/user", secured(), function (req, res, next) {
         name: req.user.fullname
       }).then(user => {
         console.log(user.get())
+        
         }
      
       )
@@ -48,9 +50,8 @@ res.render("userProfile", {
   // userProfile: JSON.stringify(userProfile, null, 2),
   //rawDB: JSON.stringify(current_user, null, 2),
   title: "Profile page",
-  //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
-  fullname: current_user.name,
-  profileImg: current_user.img
+  fullname: res.get("name"),
+  profileImg: res.get("profilePicture")
 });
 
 
