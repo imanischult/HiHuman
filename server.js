@@ -7,10 +7,11 @@
 // =============================================================
 var express = require("express");
 var exphbs = require("express-handlebars");
-var bodyParser = require("body-parser")
+var bodyParser = require("body-parser");
 var apiRouter = require("./routes/apiRoutes.js");
 var authRouter = require("./routes/authRoutes.js");
-var userRouter = require("./routes/userRoutes.js")
+var userRouter = require("./routes/userRoutes.js");
+var hdbRouter = require("./routes/hdbRoutes.js");
 var userInViews = require("./controllers/userInViews");
 var session = require("express-session");
 var dotenv = require("dotenv");
@@ -105,6 +106,7 @@ app.get("/", (req, res) => {
 app.use("/", userRouter);
 app.use("/api", apiRouter);
 app.use("/", authRouter);
+app.use("/", hdbRouter);
 app.use(userInViews());
 
 module.exports = app;
