@@ -45,13 +45,12 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-console.log(app.get('env'));
+console.log(app.get("env"));
 
-if (app.get('env') === 'production') {
+if (app.get("env") === "production") {
   sess.cookie.secure = true; // serve secure cookies, requires https
 }
 app.use(session(sess));
-
 
 // Configure Passport to use Auth0
 var strategy = new Auth0Strategy(
@@ -62,7 +61,7 @@ var strategy = new Auth0Strategy(
     callbackURL:
       process.env.AUTH0_CALLBACK_URL || "http://localhost:8080/callback"
   },
-  function (accessToken, refreshToken, extraParams, profile, done) {
+  function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
@@ -72,19 +71,17 @@ var strategy = new Auth0Strategy(
 
 passport.use(strategy);
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 // You can use this section to keep a smaller payload
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function (user, done) {
+passport.deserializeUser(function(user, done) {
   done(null, user);
 });
-
 
 // Sets up the Express App
 // =============================================================
@@ -92,7 +89,6 @@ passport.deserializeUser(function (user, done) {
 var PORT = process.env.PORT || 8080;
 
 app.use(express.static("public"));
-
 
 // Routes
 // =============================================================
@@ -106,14 +102,18 @@ module.exports = app;
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true, match: /_tests$/ }).catch(function(err){ //, match: /_tests$/ for making the db stable.
-  console.log(err + " this is not a test.");
-  // app.listen(PORT, function () {
-  //   console.log("App listening on PORT " + PORT);
-  // });
-}).then(function () { 
-  //changed the above to only drop everything when the server restarts and refresh if the db name ends in _test. You can change this in the config/config.json
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
+db.sequelize
+  .sync({ force: true, match: /_tests$/ })
+  .catch(function(err) {
+    //, match: /_tests$/ for making the db stable.
+    console.log(err + " this is not a test.");
+    // app.listen(PORT, function () {
+    //   console.log("App listening on PORT " + PORT);
+    // });
+  })
+  .then(function() {
+    //changed the above to only drop everything when the server restarts and refresh if the db name ends in _test. You can change this in the config/config.json
+    app.listen(PORT, function() {
+      console.log("App listening on PORT " + PORT);
+    });
   });
-});
