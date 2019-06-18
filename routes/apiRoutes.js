@@ -66,6 +66,13 @@ router.put("/update", secured(), function (req, res) {
 //Create a new Activity
 
 router.post("/activity", secured(), function(req, res) {
+  db.User.create({
+    name: name,
+      time: time,
+      location: location,
+      invitees: invitees,
+      notes: notes
+  })
   
 })
 
