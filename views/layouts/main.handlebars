@@ -7,15 +7,12 @@
 
     <title>HiH CurlQueen</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link type="text/css"  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    {{!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" /> --}}
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/styleUP.css">
 
@@ -27,9 +24,11 @@
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">HiH</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Manage Activities</a></li>
-                <li><a href="#">Manage Friends</a></li>
-                <li><a href="/logout">Log Out</a></li>
+                <li><a href="/activities">Manage Activities</a></li>
+                <li><a href="/friends">Manage Friends</a></li>
+                {{#if isLoggedIn}}<li id="logout"><a href="/logout">Log Out</a></li>
+                {{/if}}
+                {{!-- this works on home but not on users, FIX THIS. --}}
             </ul>
         </div>
     </nav>
@@ -51,7 +50,8 @@
 
 
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    {{!-- <script type="text/javascript" src="/js/materialize.min.js"></script> --}}
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
 </body>
