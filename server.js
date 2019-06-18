@@ -90,7 +90,6 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.static("public"));
 
-
 // Routes
 // =============================================================
 app.use("/", userRouter);
@@ -103,10 +102,10 @@ module.exports = app;
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-<<<<<<< HEAD
 db.sequelize
-  .sync({ force: true, match: /_tests$/ }) //match: /_tests$/ prevents the DROP db code //
+  .sync({ force: true, match: /_tests$/ })
   .catch(function(err) {
+    //, match: /_tests$/ for making the db stable.
     console.log(err + " this is not a test.");
     // app.listen(PORT, function () {
     //   console.log("App listening on PORT " + PORT);
@@ -117,15 +116,4 @@ db.sequelize
     app.listen(PORT, function() {
       console.log("App listening on PORT " + PORT);
     });
-=======
-db.sequelize.sync({ force: true, match: /_tests$/ }).catch(function(err){ //, match: /_tests$/ for making the db stable.
-  console.log(err + " this is not a test.");
-  // app.listen(PORT, function () {
-  //   console.log("App listening on PORT " + PORT);
-  // });
-}).then(function () { 
-  //changed the above to only drop everything when the server restarts and refresh if the db name ends in _test. You can change this in the config/config.json
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
->>>>>>> b738cbef1867da8ee96ed9d2075ed336a40afa8e
   });

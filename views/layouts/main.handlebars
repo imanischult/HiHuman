@@ -65,10 +65,15 @@
     <script type="text/javascript" src="../../public/js/app.js"></script>
   </body>
   <script>
-
-var elem = document.querySelector('.tabs'); var instance = M.Tabs.init(elem, {});
+    var elem = document.querySelector('.tabs'); 
+    var instance = M.Tabs.init(elem, {});
 
     console.log("script connect");
+
+    // Logic for modals //
+      $(document).ready(function(){
+    $(".modal").modal();
+  });
 </script>
 
 </html>
