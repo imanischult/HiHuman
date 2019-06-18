@@ -1,0 +1,19 @@
+<h1>Update your profile</h1>
+
+<form data-id="{{this.id}}" class="update-form">
+
+  <div class="form-group">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" value="{{this.name}}">
+    <label for="username">username:</label>
+    <input type="text" id="username" name="username" value="{{this.username}}">
+  </div>
+
+  <div class="form-group">
+    <label for="profile-pic">Enter a URL for a profile picture here</label>
+    <input id="profile-pic" name="profile-pic" >{{this.profilePicture}}</textarea>
+  </div>
+
+  <button type="submit">Update Profile</button>
+</form>
+{{!-- Right now, this is just a static form where nothing works. Feel free to style as you like. --}}

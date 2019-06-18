@@ -1,4 +1,4 @@
-//this is the file that contains the routes what interact with the database, and display data on pages.
+//this is the file that contains the routes what interact with the database.
 
 // Dependencies
 // =============================================================
@@ -7,6 +7,8 @@
 var db = require("../models");
 var router = require("express").Router();
 var secured = require("../controllers/secured");
+var complete = require("../controllers/complete");
+var me = complete();
 
 
 // Routes
@@ -17,51 +19,67 @@ var secured = require("../controllers/secured");
 //when a new account is created, we need a post route to the db to add all the infoz.
 
 
-  // Get a user profile...
-  router.get("/users/:id", secured(), function (req, res) {
-    //find the user by the user_id
-    db.User.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(results) {
-      //...display the result data on the profile page, in the appropriate areas.
-      res.json(results);
+//use this for the form we use to get additional info and save in the DB.
+router.put("/update", secured(), function (req, res) {
+  const { name, username, profilePicture } = req.body;
+  console.log(req.body);
+  //username will be the name that we display here
+  if (!username || !name) {
+    res.status(422);
+    res.json({
+      message: "Please check inputs and resubmit."
     });
-  });
-
-
-  router.post("/api/users", function(req, res) {
-    const { email, firstName, lastName, userName } = req.body;
-    if (!userName || !email || !firstName || !lastName) {
-      res.status(422);
-      res.json({
-        message: "Please check inputs and resubmit."
-      });
-      return;
-    } else {
-      db.User.create({
-        firstName: firstName,
-        lastName: lastName,
-        userName: userName,
-        email: email
-      })
-        .then(user => {
-          res.status(201);
-          res.json(user);
-        })
-        .catch(error => {
-          res.status(400);
-          res.json(error);
-        });
-    };
-
+    return;
+  } else {
+    db.User.update({
+      where: {
+        authId : me.user_id
+      }
+    }, {
+      name: name,
+      userName: userName,
+      profilePicture: profilePicture
     })
-    // Create a new user
+    .then(function(user) {
+      console.log(user);
+      router.get("/user", function (req, res) {
 
-    //Will need to add logic to call this method after authentication, if there is no matching user in our database.
-    
+        res.render("userProfile", {
+          isLoggedIn: true,
+          profile: user,
+          title: `${user.get("name")}'s Profile page`,
+          //we will need to add handling above here to select whether the fullname here is the userProfile.displayname from Auth0, or the username from the DB.
+          fullname: user.get("name"),
+          username: user.get("username"),
+          profileImg: user.get("profilePicture")
+        })
+        console.log(user);
+        res.status(201);
+        res.json(user);
+      });
+    })
+      .catch(error => {
+        res.status(400);
+        res.json(error);
+      })
+  }
+})
 
-   //Routes for the new modules will go here
+//Create a new Activity
 
-  module.exports = router;
+router.post("/activity", secured(), function(req, res) {
+  db.User.create({
+    name: res.name,
+      time: res.time,
+      location: res.loc,
+      invitees: res.invitees,
+      notes: res.notes
+  }).then(function (user) {
+    res.render("userActivities", {
+      user : user,
+    })
+  })
+  
+})
+
+module.exports = router;
