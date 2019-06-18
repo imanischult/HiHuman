@@ -1,3 +1,4 @@
+// This is how auth0 knows when a user is logged out and where to direct them
 module.exports = function() {
   return function secured(req, res, next) {
     if (req.user) {
@@ -7,5 +8,3 @@ module.exports = function() {
     res.redirect("/login");
   };
 };
-
-// This is how auth0 knows when a user is logged out and where to direct them

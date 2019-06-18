@@ -2,7 +2,5 @@
 CREATE DATABASE hihuman;
 USE hihuman;
 
-CREATE table profile(
-    
-)
+
 

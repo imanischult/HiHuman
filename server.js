@@ -90,14 +90,7 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  if (req.user) {
-    console.log(req.user);
-    res.render("home", { isLoggedIn: true, buttonData: "Your Profile" });
-  } else {
-    res.render("home", { isLoggedIn: false, buttonData: "Login/Signup" });
-  }
-});
+
 // Routes
 // =============================================================
 app.use("/", userRouter);
