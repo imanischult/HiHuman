@@ -44,20 +44,20 @@ $(function() {
     });
   
     //for updating the profile
-    $(".update-profile").on("submit", function(event) {
+    $(".update-form").on("submit", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
   
       var updatedUser = {
         name: $("#name").val().trim(),
         username: $("#username").val().trim(),
-        profilePicture: $("#profilePic").val().trim()
+        profilePicture: $("#profile-pic").val().trim()
       };
   
       var id = $(this).data("id");
   
       // Send the POST request.
-      $.ajax("/api/users/" + id, {
+      $.ajax("/api/update/", {
         type: "PUT",
         data: updatedUser
       }).then(
