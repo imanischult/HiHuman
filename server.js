@@ -106,7 +106,7 @@ module.exports = app;
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true}).catch(function(err){ //, match: /_tests$/ for making the db stable.
+db.sequelize.sync({ force: true, match: /_tests$/ }).catch(function(err){ //, match: /_tests$/ for making the db stable.
   console.log(err + " this is not a test.");
   // app.listen(PORT, function () {
   //   console.log("App listening on PORT " + PORT);

@@ -5,6 +5,8 @@ var db = require("../models");
 
 
 
+
+
 router.get("/", (req, res) => {
     if (req.user) {
         console.log(req.user);
