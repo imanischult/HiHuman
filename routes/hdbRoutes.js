@@ -18,3 +18,10 @@ router.get("/users/:id", function(req, res){
 
 res.render("userProfile");
 });
+
+router.get("/update", function(req, res){
+
+    res.render("userProfileUpdate");
+});
+
+module.exports = router;
