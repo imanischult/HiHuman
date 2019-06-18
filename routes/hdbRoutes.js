@@ -3,6 +3,17 @@ var secured = require("../controllers/secured");
 var router = express.Router();
 var db = require("../models");
 
+
+
+router.get("/", (req, res) => {
+    if (req.user) {
+        console.log(req.user);
+        res.render("home", { isLoggedIn: true, buttonData: "Your Profile" });
+      } else {
+        res.render("home", { isLoggedIn: false, buttonData: "Login/Signup" });
+      }
+  });
+
 router.get("/friends", function(req, res){
 
     res.render("userFriends");
