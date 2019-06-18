@@ -7,10 +7,11 @@
 // =============================================================
 var express = require("express");
 var exphbs = require("express-handlebars");
-var bodyParser = require("body-parser")
+var bodyParser = require("body-parser");
 var apiRouter = require("./routes/apiRoutes.js");
 var authRouter = require("./routes/authRoutes.js");
-var userRouter = require("./routes/userRoutes.js")
+var userRouter = require("./routes/userRoutes.js");
+var hdbRouter = require("./routes/hdbRoutes.js");
 var userInViews = require("./controllers/userInViews");
 var session = require("express-session");
 var dotenv = require("dotenv");
@@ -105,13 +106,20 @@ app.get("/", (req, res) => {
 app.use("/", userRouter);
 app.use("/api", apiRouter);
 app.use("/", authRouter);
+app.use("/", hdbRouter);
 app.use(userInViews());
 
 module.exports = app;
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: true, match: /_tests$/ }).catch(function(err){
+  console.log(err + " this is not a test.");
+  // app.listen(PORT, function () {
+  //   console.log("App listening on PORT " + PORT);
+  // });
+}).then(function () { 
+  //changed the above to only drop everything when the server restarts and refresh if the db name ends in _test. You can change this in the config/config.json
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
