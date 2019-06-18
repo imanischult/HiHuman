@@ -31,7 +31,7 @@ var secured = require("../controllers/secured");
   });
 
   //use this for the form we use to get additional info and save in the DB.
-  router.post("/api/users", function(req, res) {
+  router.put("/api/users", function(req, res) {
     const { name, userName } = req.body;
     //username will be the name that we display here
     if (!userName || !name) {
@@ -44,10 +44,6 @@ var secured = require("../controllers/secured");
       db.User.update({
         name: name,
         userName: userName,
-      }, {
-        where: {
-          id: user.id
-        }
       })
         .then(user => {
           res.status(201);
