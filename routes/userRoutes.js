@@ -28,7 +28,7 @@ router.get("/user", secured(), function (req, res, next) {
     })
     }
 
-  })
+  });
 
     //currently, this is the code that is displaying what we see on the profile page at /user. 
     res.render("userProfile", {
