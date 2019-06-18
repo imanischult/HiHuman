@@ -43,12 +43,7 @@ var secured = require("../controllers/secured");
     } else {
       db.User.update({
         name: name,
-        userName: username,
-        profilePicture: profilePicture
-      }, {
-        where: {
-          id: user.id
-        }
+        userName: userName,
       })
         .then(user => {
           res.status(201);

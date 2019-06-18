@@ -37,7 +37,10 @@ router.get("/user", secured(), function (req, res, next) {
       //show prompt to complete profile; populate any existing values
     })
     }
-    //currently, this is the code that is displaying what we see on the profile page at /user (in the userProfile.handlebars file). 
+
+  });
+
+    //currently, this is the code that is displaying what we see on the profile page at /user. 
     res.render("userProfile", {
         // userProfile: JSON.stringify(userProfile, null, 2),
         title: "Profile page",
@@ -47,9 +50,9 @@ router.get("/user", secured(), function (req, res, next) {
       });
 
       
-    })
+    });
 
-  });
+ 
 
   //this is the part where we update the profile. It'd be good to have it auto trigger after a new user is created in the DB, but let's burn that bridge later.
   // db.User.afterCreate((user) => {
